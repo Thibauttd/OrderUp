@@ -12,17 +12,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderUp"
         tools:targetApi="31">
+
+        <!-- Définir l'activité principale -->
+
+        <!-- WaiterActivity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".WaiterActivity"
+            android:exported="true">
+            <!-- Ajoutez une intent-filter si nécessaire -->
+        </activity>
+
+        <activity
+            android:name=".TablesActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.OrderUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+
+        <!-- MainActivity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.OrderUp">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+    </application>
 </manifest>

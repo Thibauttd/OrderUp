@@ -43,4 +43,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="tables_button_label">Les tables</string>
+    <string name="restaurant_plan_button_label">Plan du restaurant</string>
+    <string name="add_table_button">ajouter table</string>
 </resources>
