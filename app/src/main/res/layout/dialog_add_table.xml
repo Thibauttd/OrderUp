@@ -1,0 +1,27 @@
+<!-- res/layout/dialog_add_table.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Numéro de la table" />
+
+    <EditText
+        android:id="@+id/editTextCapacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Capacité de la table"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnAddTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajouter Table" />
+
+</LinearLayout>
