@@ -3,26 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/formules">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.orderup.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/formules"
+        android:name="com.example.orderup.activity.Formules"
+        android:label="Formules"
+        tools:layout="@layout/formules">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_Formule_to_Role"
+            app:destination="@id/role" />
     </fragment>
+
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.orderup.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/cook"
+        android:name="com.example.orderup.activity.Cook"
+        android:label="Cook"
+        tools:layout="@layout/cook">
+    </fragment>
+
+    <fragment
+        android:id="@+id/role"
+        android:name="com.example.orderup.activity.Role"
+        android:label="Roles"
+        tools:layout="@layout/role">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_Role_to_Cook"
+            app:destination="@id/cook" />
+
+        <action
+            android:id="@+id/action_Role_to_Formules"
+            app:destination="@id/formules" />
+
+        <action
+            android:id="@+id/action_Role_to_Serveur"
+            app:destination="@id/serveur" />
+
+        <action
+            android:id="@+id/action_Role_to_Gerant"
+            app:destination="@id/gerant" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/gerant"
+        android:name="com.example.orderup.activity.Gerant"
+        android:label="Gerant"
+        tools:layout="@layout/gerant">
+    </fragment>
+
+    <fragment
+        android:id="@+id/serveur"
+        android:name="com.example.orderup.activity.Serveur"
+        android:label="Serveur"
+        tools:layout="@layout/serveur">
+
+        <action
+            android:id="@+id/action_Serveur_to_Tables"
+            app:destination="@id/table" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/table"
+        android:name="com.example.orderup.activity.Tables"
+        android:label="Tables"
+        tools:layout="@layout/tables">
+    </fragment>
+
 </navigation>

@@ -1,4 +1,4 @@
-package com.example.orderup
+package com.example.orderup.model
 
 class TableModel (
     var key: String= "",

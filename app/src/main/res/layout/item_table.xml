@@ -1,6 +1,5 @@
 <!-- res/layout/item_table.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -8,24 +7,20 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground">
+        android:layout_width="380dp"
+        android:layout_height="37dp">
 
-        <!-- Ajoutez d'autres vues si nécessaire -->
+        <TextView
+            android:id="@+id/textCapacity"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/textNumero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/textNumero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Numéro: " />
-
-    <TextView
-        android:id="@+id/textCapacity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Capacité: " />
 
 </LinearLayout>

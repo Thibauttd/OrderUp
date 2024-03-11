@@ -1,63 +1,82 @@
-package com.example.orderup
+package com.example.orderup.activity // Si c'est vraiment un fragment, il serait plus approprié de le mettre dans un package nommé 'fragment' ou quelque chose de similaire
 
 import TableAdapter
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.orderup.R
+import com.example.orderup.databinding.ActivityTablesBinding
+import com.example.orderup.model.TableModel
+import com.example.orderup.databinding.TablesBinding
+import com.example.orderup.repository.TableRepository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
-class TablesActivity : AppCompatActivity(), TableAdapter.OnTableClickListener, TableAdapter.OnTableLongClickListener {
+class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTableLongClickListener {
 
     private val tableRepository = TableRepository()
     private lateinit var tableAdapter: TableAdapter
     private lateinit var recyclerView: RecyclerView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tables)
+    private var _binding: ActivityTablesBinding? = null
+    private val binding get() = _binding!!
 
-        recyclerView = findViewById(R.id.recyclerViewTables)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = ActivityTablesBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        recyclerView = binding.recyclerViewTables
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         tableAdapter = TableAdapter(emptyList(), this, this)
         recyclerView.adapter = tableAdapter
 
         // Récupérer toutes les tables et afficher
         tableRepository.getAllTables(object : TableRepository.TablesListener {
             override fun onTablesReceived(tables: List<TableModel>) {
-                runOnUiThread {
+                requireActivity().runOnUiThread {
                     println("Tables received: $tables")
                     tableAdapter.updateData(tables)
-                    // Mettez à jour la couleur du RecyclerView
-                    updateRecyclerViewColor()
                 }
             }
 
             override fun onTablesError(error: String) {
-                Snackbar.make(findViewById(R.id.main), "Erreur: $error", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(view, "Erreur: $error", Snackbar.LENGTH_SHORT).show()
             }
         })
 
         // Initialisation du bouton
-        val btnAddTable: FloatingActionButton = findViewById(R.id.btnAddTable)
+        val btnAddTable: FloatingActionButton = view.findViewById(R.id.btnAddTable)
 
         // Gestionnaire de clic du bouton
         btnAddTable.setOnClickListener {
             createNewTable()
         }
+
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     // Fonction pour créer une nouvelle table
     private fun createNewTable() {
         // Afficher la boîte de dialogue pour ajouter une nouvelle table
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_table, null)
-        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_table, null)
+        val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .setTitle("Ajouter Table")
 
@@ -85,7 +104,7 @@ class TablesActivity : AppCompatActivity(), TableAdapter.OnTableClickListener, T
                 alertDialog.dismiss()
 
                 // Afficher un message ou effectuer d'autres actions si nécessaire
-                Snackbar.make(findViewById(R.id.main), "Nouvelle table ajoutée!", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), "Nouvelle table ajoutée!", Snackbar.LENGTH_SHORT).show()
             } else {
                 // Afficher un message d'erreur si les informations ne sont pas valides
                 Snackbar.make(dialogView, "Veuillez fournir des informations valides", Snackbar.LENGTH_SHORT).show()
@@ -96,22 +115,12 @@ class TablesActivity : AppCompatActivity(), TableAdapter.OnTableClickListener, T
         alertDialog.show()
     }
 
-    // Fonction pour mettre à jour la couleur du RecyclerView en fonction de l'état des tables
-    private fun updateRecyclerViewColor() {
-        val backgroundColor = if (tableRepository.hasOccupiedTables()) {
-            Color.parseColor("#FFA500") // Orange s'il y a des tables occupées
-        } else {
-            Color.parseColor("#00FF00") // Vert s'il n'y a pas de tables occupées
-        }
-        recyclerView.setBackgroundColor(backgroundColor)
-    }
-
     // Fonction pour afficher la boîte de dialogue de modification de la table
     private fun showEditTableDialog(selectedTable: TableModel) {
         // Ajoutez ici le code pour afficher la boîte de dialogue de modification
         // Par exemple, vous pouvez créer une boîte de dialogue personnalisée avec les champs nécessaires
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit_table, null)
-        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_table, null)
+        val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .setTitle("Modifier Table")
 
@@ -151,7 +160,7 @@ class TablesActivity : AppCompatActivity(), TableAdapter.OnTableClickListener, T
                 alertDialog.dismiss()
 
                 // Afficher un message ou effectuer d'autres actions si nécessaire
-                Snackbar.make(findViewById(R.id.main), "Table mise à jour!", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView().findViewById(R.id.table), "Table mise à jour!", Snackbar.LENGTH_SHORT).show()
             } else {
                 // Afficher un message d'erreur si les nouvelles informations ne sont pas valides
                 Snackbar.make(dialogView, "Veuillez fournir des informations valides", Snackbar.LENGTH_SHORT).show()

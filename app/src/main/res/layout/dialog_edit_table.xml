@@ -6,15 +6,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textDialogTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Modifier Table"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"/>
-
     <EditText
         android:id="@+id/editTextNumber"
         android:layout_width="match_parent"

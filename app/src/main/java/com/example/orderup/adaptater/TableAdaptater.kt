@@ -3,10 +3,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderup.R
-import com.example.orderup.TableModel
+import com.example.orderup.model.TableModel
 
 class TableAdapter(
     private var tables: List<TableModel>,
@@ -76,14 +77,15 @@ class TableAdapter(
         fun bind(table: TableModel) {
             // Mettez à jour la couleur du fond en fonction du statut de la table
             val backgroundColor = if (table.occupied) {
-                Color.parseColor("#FFA500") // Orange pour occupé
+                Color.parseColor("#ff914d") // Orange pour occupé
             } else {
-                Color.parseColor("#00FF00") // Vert pour non occupé
+                Color.parseColor("#15ad4c") // Vert pour non occupé
             }
+
             frameLayout.setBackgroundColor(backgroundColor)
 
             // Mettez à jour les autres éléments de l'interface utilisateur
-            textNumero.text = "Numéro: ${table.numero}"
+            textNumero.text = "Table n°${table.numero}"
             textCapacity.text = "Capacité: ${table.capacity}"
         }
     }

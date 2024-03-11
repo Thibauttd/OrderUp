@@ -1,6 +1,8 @@
-package com.example.orderup
+package com.example.orderup.repository
 
+import com.example.orderup.model.TableModel
 import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
 
 class TableRepository {
     private val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("tables")
