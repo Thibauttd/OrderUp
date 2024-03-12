@@ -1,8 +1,11 @@
 package com.example.orderup.activity // Si c'est vraiment un fragment, il serait plus approprié de le mettre dans un package nommé 'fragment' ou quelque chose de similaire
 
 import TableAdapter
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.orderup.MainActivity
 import com.example.orderup.R
 import com.example.orderup.databinding.ActivityTablesBinding
 import com.example.orderup.model.TableModel
@@ -176,8 +180,13 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
     }
 
     override fun onTableLongClick(table: TableModel) {
-        // Gérer le clic long sur la table (par exemple, afficher la boîte de dialogue de modification)
-        showEditTableDialog(table)
+        val delayMillis: Long = 1000
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(requireContext(), Prise_commande::class.java)
+            intent.putExtra("num_table", table.numero)
+            startActivity(intent)
+        }, delayMillis)
     }
+
 }
 

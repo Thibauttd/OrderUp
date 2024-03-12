@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.example.orderup.activity.Prise_commande"
+            android:label="Prise de commande"
+            android:theme="@style/Theme.OrderUp" />
+
     </application>
 
 </manifest>
