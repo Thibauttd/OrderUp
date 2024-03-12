@@ -151,16 +151,14 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
                     capacity = newCapacity,
                     occupied = selectedTable.occupied // Conservez la valeur existante d'occupied
                 )
-
-
                 // Mettez à jour la table dans la base de données
-//                tableRepository.updateTable(updatedTable)
+                tableRepository.updateTable(updatedTable)
 
                 // Fermer la boîte de dialogue
                 alertDialog.dismiss()
 
                 // Afficher un message ou effectuer d'autres actions si nécessaire
-                Snackbar.make(requireView().findViewById(R.id.table), "Table mise à jour!", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(dialogView, "Table mise à jour!", Snackbar.LENGTH_SHORT).show()
             } else {
                 // Afficher un message d'erreur si les nouvelles informations ne sont pas valides
                 Snackbar.make(dialogView, "Veuillez fournir des informations valides", Snackbar.LENGTH_SHORT).show()
