@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/nav_host_fragment"
     app:startDestination="@id/formules">
 
     <fragment
@@ -70,13 +70,66 @@
         android:name="com.example.orderup.activity.Tables"
         android:label="Tables"
         tools:layout="@layout/tables">
+
+        <action
+            android:id="@+id/action_Tables_to_PrisesCommande"
+            app:destination="@id/prisecommande" />
     </fragment>
 
     <fragment
-        android:id="@+id/prise_commande"
-        android:name="com.example.orderup.activity.Prise_commande"
-        android:label="Prise Commande"
-        tools:layout="@layout/prise_commande">
+        android:id="@+id/prisecommande"
+        android:name="com.example.orderup.activity.Prisecommande"
+        android:label="Prise de commandes"
+        tools:layout="@layout/prisecommande">
+
+        <action
+            android:id="@+id/action_PriseCom_to_entrees"
+            app:destination="@id/entrees" />
+        <action
+            android:id="@+id/action_PriseCom_to_tables"
+            app:destination="@id/tables" />
+        <action
+            android:id="@+id/action_PriseCom_to_plats"
+            app:destination="@id/plats" />
+        <action
+            android:id="@+id/action_PriseCom_to_desserts"
+            app:destination="@id/desserts" />
+        <action
+            android:id="@+id/action_PriseCom_to_boissons"
+            app:destination="@id/boissons" />
     </fragment>
+
+    <fragment
+        android:id="@+id/entrees"
+        android:name="com.example.orderup.activity.Entrees"
+        android:label="Entrees"
+        tools:layout="@layout/entrees">
+    </fragment>
+
+    <fragment
+        android:id="@+id/plats"
+        android:name="com.example.orderup.activity.Plats"
+        android:label="Plats"
+        tools:layout="@layout/plats">
+    </fragment>
+
+    <fragment
+        android:id="@+id/desserts"
+        android:name="com.example.orderup.activity.Desserts"
+        android:label="Desserts"
+        tools:layout="@layout/desserts">
+    </fragment>
+
+    <fragment
+        android:id="@+id/boissons"
+        android:name="com.example.orderup.activity.Boissons"
+        android:label="Boissons"
+        tools:layout="@layout/boissons">
+    </fragment>
+
+
+
+
+
 
 </navigation>

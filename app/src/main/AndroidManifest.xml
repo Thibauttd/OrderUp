@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name="com.example.orderup.activity.Prise_commande"
+            android:name=".activity.Prisecommande"
             android:label="Prise de commande"
             android:theme="@style/Theme.OrderUp" />
 

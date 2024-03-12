@@ -2,7 +2,6 @@ package com.example.orderup.activity // Si c'est vraiment un fragment, il serait
 
 import TableAdapter
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,12 +12,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.orderup.MainActivity
 import com.example.orderup.R
-import com.example.orderup.databinding.ActivityTablesBinding
 import com.example.orderup.model.TableModel
 import com.example.orderup.databinding.TablesBinding
 import com.example.orderup.repository.TableRepository
@@ -180,9 +179,11 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
     override fun onTableLongClick(table: TableModel) {
         val delayMillis: Long = 1000
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(requireContext(), Prise_commande::class.java)
-            intent.putExtra("num_table", table.numero)
-            startActivity(intent)
+            // Utiliser le NavController pour naviguer vers PrisecommandeFragment
+            findNavController().navigate(
+                R.id.action_Tables_to_PrisesCommande,
+                bundleOf("num_table" to table.numero)
+            )
         }, delayMillis)
     }
 

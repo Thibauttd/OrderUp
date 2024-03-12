@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Prise_commande">
+    tools:context=".activity.Prisecommande">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
             app:layout_constraintVertical_bias="0.124" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/boissons"
             android:layout_width="286dp"
             android:layout_height="71dp"
             android:background="@drawable/button_border"
@@ -105,6 +105,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/entrees"
             android:layout_width="286dp"
             android:layout_height="71dp"
             android:background="@drawable/button_border"
@@ -117,7 +118,7 @@
             app:layout_constraintVertical_bias="0.366">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/entree"
                 android:layout_width="142dp"
                 android:layout_height="49dp"
                 android:layout_marginStart="8dp"
@@ -137,14 +138,14 @@
                 android:layout_height="54dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/entree"
-                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintBottom_toBottomOf="@+id/entree"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView" />
+                app:layout_constraintTop_toTopOf="@+id/entree" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+            android:id="@+id/plats"
             android:layout_width="286dp"
             android:layout_height="71dp"
             android:background="@drawable/button_border"
@@ -183,6 +184,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/desserts"
             android:layout_width="286dp"
             android:layout_height="71dp"
             android:background="@drawable/button_border"
@@ -236,7 +238,7 @@
             app:layout_constraintVertical_bias="0.785" />
 
         <Button
-            android:id="@+id/table"
+            android:id="@+id/valid"
             style="@style/Widget.Material3.Button"
             android:layout_width="103dp"
             android:layout_height="42dp"
