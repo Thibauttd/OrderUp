@@ -1,14 +1,17 @@
 package com.example.orderup.activity
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
 import com.example.orderup.databinding.PrisecommandeBinding
-import androidx.navigation.fragment.findNavController
+import java.util.logging.Logger
 
 class Prisecommande : Fragment() {
 
@@ -27,17 +30,11 @@ class Prisecommande : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        try {
-            val tableNumber = requireActivity().intent.getStringExtra("num_table")
-
-            if (tableNumber != null) {
-                val formattedText = getString(R.string.table_number, tableNumber)
-                binding.textvu.text = formattedText
-            } else {
-                throw NullPointerException("Numéro de table manquant dans l'intent")
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+        arguments?.getString("num_table")?.let { tableNumber ->
+            val formattedText = getString(R.string.table_number, tableNumber)
+            binding.textvu.text = formattedText
+        } ?: run {
+            throw NullPointerException("Numéro de table manquant dans les arguments")
         }
 
         binding.boissons.setOnClickListener {

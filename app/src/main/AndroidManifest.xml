@@ -21,12 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".activity.Prisecommande"
-            android:label="Prise de commande"
-            android:theme="@style/Theme.OrderUp" />
-
     </application>
 
 </manifest>
