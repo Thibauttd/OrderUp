@@ -72,4 +72,11 @@
         tools:layout="@layout/tables">
     </fragment>
 
+    <fragment
+        android:id="@+id/prise_commande"
+        android:name="com.example.orderup.activity.Prise_commande"
+        android:label="Prise Commande"
+        tools:layout="@layout/prise_commande">
+    </fragment>
+
 </navigation>
