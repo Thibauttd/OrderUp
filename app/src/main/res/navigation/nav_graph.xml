@@ -62,11 +62,11 @@
 
         <action
             android:id="@+id/action_Serveur_to_Tables"
-            app:destination="@id/table" />
+            app:destination="@id/tables" />
     </fragment>
 
     <fragment
-        android:id="@+id/table"
+        android:id="@+id/tables"
         android:name="com.example.orderup.activity.Tables"
         android:label="Tables"
         tools:layout="@layout/tables">

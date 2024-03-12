@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +18,6 @@ import com.example.orderup.databinding.ActivityTablesBinding
 import com.example.orderup.model.TableModel
 import com.example.orderup.databinding.TablesBinding
 import com.example.orderup.repository.TableRepository
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
 class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTableLongClickListener {
@@ -26,7 +26,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
     private lateinit var tableAdapter: TableAdapter
     private lateinit var recyclerView: RecyclerView
 
-    private var _binding: ActivityTablesBinding? = null
+    private var _binding: TablesBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -34,7 +34,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ActivityTablesBinding.inflate(inflater, container, false)
+        _binding = TablesBinding.inflate(inflater, container, false)
         val view = binding.root
 
         recyclerView = binding.recyclerViewTables
@@ -57,7 +57,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
         })
 
         // Initialisation du bouton
-        val btnAddTable: FloatingActionButton = view.findViewById(R.id.btnAddTable)
+        val btnAddTable: ImageButton = view.findViewById(R.id.btnAddTable)
 
         // Gestionnaire de clic du bouton
         btnAddTable.setOnClickListener {
