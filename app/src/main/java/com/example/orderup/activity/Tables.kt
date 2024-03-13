@@ -1,7 +1,6 @@
 package com.example.orderup.activity // Si c'est vraiment un fragment, il serait plus approprié de le mettre dans un package nommé 'fragment' ou quelque chose de similaire
 
 import TableAdapter
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
