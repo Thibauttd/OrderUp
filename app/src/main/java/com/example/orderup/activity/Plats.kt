@@ -9,13 +9,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
 import com.example.orderup.databinding.BoissonsBinding
 import com.example.orderup.databinding.FormulesBinding // Import correct binding class
+import com.example.orderup.databinding.PlatsBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class Plats : Fragment() {
 
-    private var _binding: BoissonsBinding? = null
+    private var _binding: PlatsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,7 +27,7 @@ class Plats : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = BoissonsBinding.inflate(inflater, container, false) // Correct binding class name
+        _binding = PlatsBinding.inflate(inflater, container, false) // Correct binding class name
         return binding.root
 
     }
