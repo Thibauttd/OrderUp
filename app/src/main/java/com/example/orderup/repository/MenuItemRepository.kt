@@ -35,15 +35,11 @@ class MenuItemRepository(private val category: String) {
 
                 for (itemSnapshot in snapshot.children) {
                     val item = itemSnapshot.getValue(MenuItem::class.java)
-                    println("item : $item")
                     item?.let { items.add(it) }
                 }
-                println("items : : $items")
                 callback(items)
             }
             override fun onCancelled(error: DatabaseError) {
-                // Handle errors
-                println("bonjour")
                 callback(emptyList())
             }
         })

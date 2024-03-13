@@ -21,11 +21,12 @@ class Boissons : Fragment() {
     private var _binding: BoissonsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var tableId: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = BoissonsBinding.inflate(inflater, container, false) // Correct binding class name
         return binding.root
 
@@ -33,6 +34,8 @@ class Boissons : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        tableId = arguments?.getString("tableId") ?: ""
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewBoissons)
         recyclerView.layoutManager = LinearLayoutManager(requireContext()) // Attacher un LinearLayoutManager

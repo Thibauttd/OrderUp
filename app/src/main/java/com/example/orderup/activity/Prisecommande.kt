@@ -18,6 +18,8 @@ class Prisecommande : Fragment() {
     private var _binding: PrisecommandeBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var tableId: String
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,6 +32,8 @@ class Prisecommande : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        tableId = arguments?.getString("tableId") ?: ""
+
         arguments?.getString("num_table")?.let { tableNumber ->
             val formattedText = getString(R.string.table_number, tableNumber)
             binding.textvu.text = formattedText
@@ -39,7 +43,8 @@ class Prisecommande : Fragment() {
 
         binding.boissons.setOnClickListener {
             // Naviguer vers la destination associée à l'action
-            findNavController().navigate(R.id.action_PriseCom_to_boissons)
+            findNavController().navigate(R.id.action_PriseCom_to_boissons,
+                bundleOf( "tableId" to tableId))
         }
         binding.plats.setOnClickListener {
             // Naviguer vers la destination associée à l'action

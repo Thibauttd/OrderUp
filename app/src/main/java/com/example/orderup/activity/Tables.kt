@@ -181,7 +181,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
             // Utiliser le NavController pour naviguer vers PrisecommandeFragment
             findNavController().navigate(
                 R.id.action_Tables_to_PrisesCommande,
-                bundleOf("num_table" to table.numero)
+                bundleOf("num_table" to table.numero, "tableId" to table.key)
             )
         }, delayMillis)
     }
