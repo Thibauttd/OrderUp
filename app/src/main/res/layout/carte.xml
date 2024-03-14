@@ -29,49 +29,65 @@
             android:layout_height="wrap_content"
             android:text="Scanner une photo de la carte"
             android:textSize="16sp"
-            tools:layout_editor_absoluteX="88dp"
-            tools:layout_editor_absoluteY="130dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.157" />
 
         <TextView
             android:id="@+id/verif_info"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="195dp"
+            android:layout_height="28dp"
             android:text="Vérifie les informations"
             android:textSize="16sp"
-            tools:layout_editor_absoluteX="123dp"
-            tools:layout_editor_absoluteY="270dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="58dp"
             android:layout_height="51dp"
             android:src="@drawable/camera"
-            tools:layout_editor_absoluteX="73dp"
-            tools:layout_editor_absoluteY="178dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.271"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.223" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="54dp"
             android:layout_height="50dp"
             android:src="@drawable/piece_jointe"
-            tools:layout_editor_absoluteX="261dp"
-            tools:layout_editor_absoluteY="178dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.713"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.223" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/boissons"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="286dp"
+            android:layout_height="71dp"
             android:background="@drawable/border_prise_commande"
             android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.419"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="308dp">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.47000003">
 
             <TextView
                 android:id="@+id/boisson"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="142dp"
+                android:layout_height="49dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:gravity="center_vertical"
@@ -79,7 +95,7 @@
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/img_boisson"
+                app:layout_constraintEnd_toStartOf="@+id/img_boisson"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,9 +105,130 @@
                 android:layout_height="64dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/boissons"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/boisson"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/boisson" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/entrees"
+            android:layout_width="286dp"
+            android:layout_height="71dp"
+            android:background="@drawable/border_prise_commande"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.419"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.59000003">
+
+            <TextView
+                android:id="@+id/entree"
+                android:layout_width="142dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_vertical"
+                android:text="Entrées"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="53dp"
+                android:layout_height="54dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/entree"
+                app:layout_constraintBottom_toBottomOf="@+id/entree"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/entree" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/plats"
+            android:layout_width="286dp"
+            android:layout_height="71dp"
+            android:background="@drawable/border_prise_commande"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.408"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.71000004">
+
+            <TextView
+                android:id="@+id/plat"
+                android:layout_width="142dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_vertical"
+                android:text="Plats"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_plat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_plat"
+                android:layout_width="58dp"
+                android:layout_height="59dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/plat"
+                app:layout_constraintBottom_toBottomOf="@+id/plat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/plat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/desserts"
+            android:layout_width="286dp"
+            android:layout_height="71dp"
+            android:background="@drawable/border_prise_commande"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.419"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.83">
+
+            <TextView
+                android:id="@+id/dessert"
+                android:layout_width="142dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_vertical"
+                android:text="Desserts"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_dessert"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_dessert"
+                android:layout_width="58dp"
+                android:layout_height="59dp"
+                android:src="@drawable/dessert"
+                app:layout_constraintBottom_toBottomOf="@+id/dessert"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.962"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dessert"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,17 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host_fragment"
-    app:startDestination="@id/carte">
+    app:startDestination="@id/formules">
 
     <fragment
-        android:id="@+id/carte"
+        android:id="@+id/formules"
         android:name="com.example.orderup.activity.Formules"
         android:label="Formules"
         tools:layout="@layout/formules">
 
         <action
-            android:id="@+id/action_Formule_to_Role"
+            android:id="@+id/action_Formule_to_Carte"
+            app:destination="@id/carte" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/carte"
+        android:name="com.example.orderup.activity.Carte"
+        android:label="Carte"
+        tools:layout="@layout/carte">
+
+        <action
+            android:id="@+id/action_Carte_to_Role"
             app:destination="@id/role" />
+
+        <action
+            android:id="@+id/action_Carte_to_Formules"
+            app:destination="@id/formules" />
     </fragment>
 
     <fragment
@@ -34,7 +49,7 @@
             app:destination="@id/cook" />
 
         <action
-            android:id="@+id/action_Role_to_Formules"
+            android:id="@+id/action_Role_to_Carte"
             app:destination="@id/carte" />
 
         <action
@@ -126,10 +141,5 @@
         android:label="Boissons"
         tools:layout="@layout/boissons">
     </fragment>
-
-
-
-
-
 
 </navigation>
