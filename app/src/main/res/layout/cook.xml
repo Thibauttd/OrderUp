@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Formules">
+    tools:context=".activity.Cook">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,31 +15,32 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="66dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="636dp"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
             android:src="@drawable/logo"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.351"
+            app:layout_constraintHorizontal_bias="0.35"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.97" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="66dp"
-            android:layout_height="63dp"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
             android:src="@drawable/chef"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.731"
+            app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.97" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="243dp"
-            android:layout_height="62dp"
+            android:layout_width="244dp"
+            android:layout_height="43dp"
             android:text="Mes commandes"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -47,7 +48,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.062" />
+            app:layout_constraintVertical_bias="0.01999998" />
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -76,4 +77,4 @@
             app:layout_constraintVertical_bias="0.221" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+</RelativeLayout>
