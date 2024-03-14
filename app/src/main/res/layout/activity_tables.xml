@@ -24,14 +24,4 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAddTable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:contentDescription="@string/add_table_button"
-        android:src="@android:drawable/ic_menu_add" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
