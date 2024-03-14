@@ -12,11 +12,33 @@ class OrderRepository {
 
     // Ajouter une commande à la base de données
     fun addOrder(order: OrderModel, callback: (Boolean) -> Unit) {
-        val key = database.push().key
-        key?.let {
-            val orderWithId = OrderModel(order.id, order.tableId, order.menuItemId, order.quantity, order.ready)
+        val key = database.push().key ?: return // Générer une clé aléatoire
+        val orderWithId = OrderModel(key, order.tableid, order.menuitemid, order.quantity, order.ready) // Associer la clé générée à la commande
 
-            database.child(it).setValue(orderWithId)
+        database.child(key).setValue(orderWithId) // Ajouter la commande avec la clé générée à la base de données
+            .addOnSuccessListener {
+                callback(true)
+            }
+            .addOnFailureListener {
+                callback(false)
+            }
+    }
+
+    fun updateOrder(order: OrderModel, callback: (Boolean) -> Unit) {
+        val orderRef = database.child(order.id)
+
+        if (order.quantity == 0) {
+            // Supprimer l'ordre s'il n'y a plus de quantité
+            orderRef.removeValue()
+                .addOnSuccessListener {
+                    callback(true)
+                }
+                .addOnFailureListener {
+                    callback(false)
+                }
+        } else {
+            // Mettre à jour la quantité de l'ordre
+            orderRef.setValue(order)
                 .addOnSuccessListener {
                     callback(true)
                 }
@@ -26,9 +48,10 @@ class OrderRepository {
         }
     }
 
+
     // Récupérer toutes les commandes pour une table spécifique
     fun getOrdersForTable(tableId: String, callback: (List<OrderModel>) -> Unit) {
-        database.orderByChild("tableId").equalTo(tableId)
+        database.orderByChild("tableid").equalTo(tableId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val orders = mutableListOf<OrderModel>()
@@ -44,4 +67,44 @@ class OrderRepository {
                 }
             })
     }
+
+    fun getOrderCountsForTable(tableId: String, callback: (Map<String, Int>) -> Unit) {
+        getOrdersForTable(tableId) { orders ->
+            val orderCounts = mutableMapOf<String, Int>()
+
+            for (order in orders) {
+                val menuItemId = order.menuitemid
+                if (orderCounts.containsKey(menuItemId)) {
+                    orderCounts[menuItemId] = orderCounts.getValue(menuItemId) + 1
+                } else {
+                    orderCounts[menuItemId] = order.quantity
+                }
+            }
+
+            callback(orderCounts)
+        }
+    }
+
+    fun getExistingOrderForTableAndMenuItem(tableId: String, menuItemId: String, callback: (OrderModel?) -> Unit) {
+        database.orderByChild("tableid").equalTo(tableId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (orderSnapshot in snapshot.children) {
+                        val order = orderSnapshot.getValue(OrderModel::class.java)
+                        if (order != null && order.menuitemid == menuItemId) {
+                            callback(order)
+                            return
+                        }
+                    }
+                    // Aucun ordre existant trouvé pour cette table et cet item
+                    callback(null)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Gestion de l'erreur
+                    callback(null)
+                }
+            })
+    }
+
 }
