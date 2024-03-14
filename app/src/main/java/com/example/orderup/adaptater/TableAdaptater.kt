@@ -1,9 +1,14 @@
+import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderup.R
 import com.example.orderup.model.TableModel
@@ -50,7 +55,7 @@ class TableAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val frameLayout: FrameLayout = itemView.findViewById(R.id.frameLayout)
+        private val frameLayout: LinearLayout = itemView.findViewById(R.id.frameLayout)
         private val textNumero: TextView = itemView.findViewById(R.id.textNumero)
         private val textCapacity: TextView = itemView.findViewById(R.id.textCapacity)
 
@@ -74,19 +79,31 @@ class TableAdapter(
         }
 
         fun bind(table: TableModel) {
-            // Mettez à jour la couleur du fond en fonction du statut de la table
-            val backgroundColor = if (table.occupied) {
+            val context = frameLayout.context
+
+            // Mettez à jour la couleur de la bordure en fonction du statut de la table
+            val borderColor = if (table.occupied) {
                 Color.parseColor("#ff914d") // Orange pour occupé
             } else {
                 Color.parseColor("#15ad4c") // Vert pour non occupé
             }
 
-            frameLayout.setBackgroundColor(backgroundColor)
+            val roundedRectangleDrawable = ContextCompat.getDrawable(context, R.drawable.rounded_rectangle) as GradientDrawable
+            roundedRectangleDrawable.setStroke(3.dpToPx(context.resources), borderColor)
+            frameLayout.background = roundedRectangleDrawable
 
             // Mettez à jour les autres éléments de l'interface utilisateur
             textNumero.text = "Table n°${table.numero}"
             textCapacity.text = "Capacité: ${table.capacity}"
         }
+    }
+
+    fun Int.dpToPx(resources: Resources): Int =
+        (this * resources.displayMetrics.density).toInt()
+
+
+    fun getTableAtPosition(position: Int): TableModel {
+        return tables[position]
     }
 
 }

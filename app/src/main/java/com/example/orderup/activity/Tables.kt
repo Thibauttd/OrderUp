@@ -1,9 +1,8 @@
-package com.example.orderup.activity // Si c'est vraiment un fragment, il serait plus approprié de le mettre dans un package nommé 'fragment' ou quelque chose de similaire
+package com.example.orderup.activity
 
 import TableAdapter
+import TableItemTouchHelper
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,19 +13,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderup.R
-import com.example.orderup.model.TableModel
 import com.example.orderup.databinding.TablesBinding
+import com.example.orderup.model.TableModel
 import com.example.orderup.repository.TableRepository
 import com.google.android.material.snackbar.Snackbar
 
-class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTableLongClickListener {
+class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelper.OnTableSwipeListener {
 
     private val tableRepository = TableRepository()
     private lateinit var tableAdapter: TableAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var itemTouchHelper: ItemTouchHelper
 
     private var _binding: TablesBinding? = null
     private val binding get() = _binding!!
@@ -41,8 +42,14 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
 
         recyclerView = binding.recyclerViewTables
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        tableAdapter = TableAdapter(emptyList(), this, this)
+        tableAdapter = TableAdapter(emptyList(), this, null)
         recyclerView.adapter = tableAdapter
+
+        // Créer l'ItemTouchHelper et l'attacher au RecyclerView
+        val tableSwipeListener: TableItemTouchHelper.OnTableSwipeListener = this
+        val tableItemTouchHelper = TableItemTouchHelper(tableAdapter, tableSwipeListener)
+        itemTouchHelper = ItemTouchHelper(tableItemTouchHelper)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
         // Récupérer toutes les tables et afficher
         tableRepository.getAllTables(object : TableRepository.TablesListener {
@@ -77,7 +84,8 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
     // Fonction pour créer une nouvelle table
     private fun createNewTable() {
         // Afficher la boîte de dialogue pour ajouter une nouvelle table
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_table, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_table, null)
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .setTitle("Ajouter Table")
@@ -97,7 +105,8 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
             // Vérifier si les informations sont valides
             if (numero.isNotEmpty() && capacity != null && capacity > 0) {
                 // Créer une nouvelle table avec les informations
-                val newTable = TableModel(key= "none", numero = numero, capacity = capacity, occupied = false)
+                val newTable =
+                    TableModel(key = "none", numero = numero, capacity = capacity, occupied = false)
 
                 // Ajouter la nouvelle table à la base de données
                 tableRepository.addTable(newTable)
@@ -106,10 +115,15 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
                 alertDialog.dismiss()
 
                 // Afficher un message ou effectuer d'autres actions si nécessaire
-                Snackbar.make(requireView(), "Nouvelle table ajoutée!", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), "Nouvelle table ajoutée!", Snackbar.LENGTH_SHORT)
+                    .show()
             } else {
                 // Afficher un message d'erreur si les informations ne sont pas valides
-                Snackbar.make(dialogView, "Veuillez fournir des informations valides", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(
+                    dialogView,
+                    "Veuillez fournir des informations valides",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -117,11 +131,10 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
         alertDialog.show()
     }
 
-    // Fonction pour afficher la boîte de dialogue de modification de la table
-    private fun showEditTableDialog(selectedTable: TableModel) {
-        // Ajoutez ici le code pour afficher la boîte de dialogue de modification
-        // Par exemple, vous pouvez créer une boîte de dialogue personnalisée avec les champs nécessaires
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_table, null)
+    override fun onTableClick(table: TableModel) {
+        // Afficher la boîte de dialogue pour mettre à jour la table sélectionnée
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_table, null)
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .setTitle("Modifier Table")
@@ -134,8 +147,8 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
         val btnUpdateTable = dialogView.findViewById<Button>(R.id.btnUpdateTable)
 
         // Pré-remplir les champs avec les informations de la table sélectionnée
-        editTextNumber.setText(selectedTable.numero)
-        editTextCapacity.setText(selectedTable.capacity.toString())
+        editTextNumber.setText(table.numero)
+        editTextCapacity.setText(table.capacity.toString())
 
         // Gestionnaire de clic pour le bouton "Modifier Table" dans la boîte de dialogue
         btnUpdateTable.setOnClickListener {
@@ -148,10 +161,10 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
                 // Mettez à jour la table avec les nouvelles informations
                 // Créer une nouvelle instance de TableModel avec les valeurs mises à jour
                 val updatedTable = TableModel(
-                    key = selectedTable.key,
+                    key = table.key,
                     numero = newNumero,
                     capacity = newCapacity,
-                    occupied = selectedTable.occupied // Conservez la valeur existante d'occupied
+                    occupied = table.occupied // Conservez la valeur existante d'occupied
                 )
                 // Mettez à jour la table dans la base de données
                 tableRepository.updateTable(updatedTable)
@@ -171,20 +184,11 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableAdapter.OnTab
         alertDialog.show()
     }
 
-    override fun onTableClick(table: TableModel) {
-        // Gérer le clic sur la table (par exemple, afficher des détails)
-    }
 
-    override fun onTableLongClick(table: TableModel) {
-        val delayMillis: Long = 1000
-        Handler(Looper.getMainLooper()).postDelayed({
-            // Utiliser le NavController pour naviguer vers PrisecommandeFragment
-            findNavController().navigate(
-                R.id.action_Tables_to_PrisesCommande,
-                bundleOf("num_table" to table.numero, "tableId" to table.key)
-            )
-        }, delayMillis)
+    override fun onTableSwiped(table: TableModel) {
+        findNavController().navigate(
+            R.id.action_Tables_to_PrisesCommande,
+            bundleOf("num_table" to table.numero, "tableId" to table.key)
+        )
     }
-
 }
-
