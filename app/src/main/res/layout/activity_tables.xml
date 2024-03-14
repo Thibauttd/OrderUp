@@ -10,7 +10,6 @@
 
     <!-- Enveloppez votre RecyclerView dans un NestedScrollView -->
 
-    <!-- Bouton pour ajouter une table -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
