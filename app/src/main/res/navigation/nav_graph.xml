@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host_fragment"
-    app:startDestination="@id/formules">
+    app:startDestination="@id/carte">
 
     <fragment
-        android:id="@+id/formules"
+        android:id="@+id/carte"
         android:name="com.example.orderup.activity.Formules"
         android:label="Formules"
         tools:layout="@layout/formules">
@@ -35,7 +35,7 @@
 
         <action
             android:id="@+id/action_Role_to_Formules"
-            app:destination="@id/formules" />
+            app:destination="@id/carte" />
 
         <action
             android:id="@+id/action_Role_to_Serveur"

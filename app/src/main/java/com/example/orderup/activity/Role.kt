@@ -34,10 +34,6 @@ class Role : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSuivant.setOnClickListener {
-            findNavController().navigate(R.id.action_Role_to_Cook)
-        }
-
         binding.btnPrecedent.setOnClickListener {
             findNavController().navigate(R.id.action_Role_to_Formules)
         }
