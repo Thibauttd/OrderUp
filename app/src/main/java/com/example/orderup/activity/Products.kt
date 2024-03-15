@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.orderup.R
 import com.example.orderup.databinding.ProductsBinding
 import com.example.orderup.model.MenuItem
@@ -115,11 +114,6 @@ open class Products : Fragment() {
                                 existingOrder.quantity + nouvelleQuantite - ancienneQuantite
                             existingOrder.quantity = updatedQuantity
                             orderRepository.updateOrder(existingOrder) { success ->
-                                if (success) {
-                                    // Afficher un message de succès
-                                } else {
-                                    // Afficher un message d'erreur
-                                }
                             }
                         } else {
                             // Aucun ordre existant, créer un nouvel ordre
@@ -129,11 +123,6 @@ open class Products : Fragment() {
                                 quantity = nouvelleQuantite
                             )
                             orderRepository.addOrder(newOrder) { success ->
-                                if (success) {
-                                    // Afficher un message de succès
-                                } else {
-                                    // Afficher un message d'erreur
-                                }
                             }
                         }
                     }

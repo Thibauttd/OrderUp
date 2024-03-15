@@ -1,8 +1,6 @@
 package com.example.orderup.activity
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
 import com.example.orderup.databinding.PrisecommandeBinding
-import java.util.logging.Logger
 
 class Prisecommande : Fragment() {
 

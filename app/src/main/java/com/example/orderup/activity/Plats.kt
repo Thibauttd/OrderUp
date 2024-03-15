@@ -2,14 +2,8 @@ package com.example.orderup.activity
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
-import com.example.orderup.databinding.BoissonsBinding
-import com.example.orderup.databinding.FormulesBinding // Import correct binding class
-import com.example.orderup.databinding.PlatsBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
