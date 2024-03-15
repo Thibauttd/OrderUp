@@ -10,185 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/carte"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/recognizedTextEt"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="La carte"
-            android:textSize="30sp"
-            android:textStyle="bold"
+            android:hint="Texte reconnu"
+            android:inputType="textMultiLine"
+            android:minLines="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.050000012" />
-
-        <TextView
-            android:id="@+id/scanner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Scanner une photo de la carte"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.157" />
-
-        <TextView
-            android:id="@+id/verif_info"
-            android:layout_width="195dp"
-            android:layout_height="28dp"
-            android:text="Vérifie les informations"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.38" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="58dp"
-            android:layout_height="51dp"
-            android:src="@drawable/camera"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.271"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.223" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="54dp"
-            android:layout_height="50dp"
-            android:src="@drawable/piece_jointe"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.713"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.223" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/boissons"
-            android:layout_width="286dp"
-            android:layout_height="71dp"
-            android:background="@drawable/border_prise_commande"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.419"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.47000003">
-
-            <TextView
-                android:id="@+id/boisson"
-                android:layout_width="142dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center_vertical"
-                android:text="Boissons"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/img_boisson"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_boisson"
-                android:layout_width="54dp"
-                android:layout_height="64dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/boissons"
-                app:layout_constraintBottom_toBottomOf="@+id/boisson"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/boisson" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/entrees"
-            android:layout_width="286dp"
-            android:layout_height="71dp"
-            android:background="@drawable/border_prise_commande"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.419"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.59000003">
-
-            <TextView
-                android:id="@+id/entree"
-                android:layout_width="142dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center_vertical"
-                android:text="Entrées"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="53dp"
-                android:layout_height="54dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/entree"
-                app:layout_constraintBottom_toBottomOf="@+id/entree"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/entree" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/plats"
-            android:layout_width="286dp"
-            android:layout_height="71dp"
-            android:background="@drawable/border_prise_commande"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.408"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.71000004">
-
-            <TextView
-                android:id="@+id/plat"
-                android:layout_width="142dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="center_vertical"
-                android:text="Plats"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/img_plat"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_plat"
-                android:layout_width="58dp"
-                android:layout_height="59dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/plat"
-                app:layout_constraintBottom_toBottomOf="@+id/plat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/plat" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintVertical_bias="0.245" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/desserts"
@@ -198,10 +32,10 @@
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.419"
+            app:layout_constraintHorizontal_bias="0.607"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.83">
+            app:layout_constraintVertical_bias="0.819">
 
             <TextView
                 android:id="@+id/dessert"
@@ -232,8 +66,161 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/plats"
+            android:layout_width="286dp"
+            android:layout_height="71dp"
+            android:background="@drawable/border_prise_commande"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.616"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.679">
 
-        <!-- TextView en dessous de la prise de commande -->
+            <TextView
+                android:id="@+id/plat"
+                android:layout_width="142dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_vertical"
+                android:text="Plats"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_plat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_plat"
+                android:layout_width="58dp"
+                android:layout_height="59dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/plat"
+                app:layout_constraintBottom_toBottomOf="@+id/plat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/plat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/entrees"
+            android:layout_width="286dp"
+            android:layout_height="71dp"
+            android:background="@drawable/border_prise_commande"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.57"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.547">
+
+            <TextView
+                android:id="@+id/entree"
+                android:layout_width="142dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_vertical"
+                android:text="Entrées"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="53dp"
+                android:layout_height="54dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/entree"
+                app:layout_constraintBottom_toBottomOf="@+id/entree"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/entree" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/boissons"
+            android:layout_width="286dp"
+            android:layout_height="71dp"
+            android:background="@drawable/border_prise_commande"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.532"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.422">
+
+            <TextView
+                android:id="@+id/boisson"
+                android:layout_width="142dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_vertical"
+                android:text="Boissons"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_boisson"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_boisson"
+                android:layout_width="54dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/boissons"
+                app:layout_constraintBottom_toBottomOf="@+id/boisson"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/boisson" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/recognizedTextBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reconnaître le texte"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.712"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16" />
+
+        <Button
+            android:id="@+id/btn_precedent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRECEDENT"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.98" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="66dp"
+            android:layout_height="25dp"
+            android:progress="50"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.97" />
 
         <Button
             android:id="@+id/btn_suivant"
@@ -254,38 +241,73 @@
             android:src="@drawable/logo"
             app:layout_constraintBottom_toTopOf="@+id/boissons"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.924"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.066" />
+            app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/btn_precedent"
+        <TextView
+            android:id="@+id/carte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PRECEDENT"
+            android:text="La carte"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98" />
+            app:layout_constraintVertical_bias="0.05" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="66dp"
-            android:layout_height="25dp"
-            android:progress="50"
+        <TextView
+            android:id="@+id/verif_info"
+            android:layout_width="181dp"
+            android:layout_height="26dp"
+            android:text="Vérifie les informations"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.97" />
+            app:layout_constraintVertical_bias="0.35" />
 
-        <!-- Ajoutez les autres ConstraintLayouts ici -->
+        <TextView
+            android:id="@+id/scanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scanner une photo de la carte"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.113" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/inputImageBtn"
+            android:layout_width="65dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:icon="@drawable/camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.192"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.144" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>
+
+    <!-- TextView en dessous de la prise de commande -->
+
+    <!-- Ajoutez les autres ConstraintLayouts ici -->
+
+
+
+    </RelativeLayout>
