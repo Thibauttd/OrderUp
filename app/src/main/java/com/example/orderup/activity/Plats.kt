@@ -14,30 +14,18 @@ import com.example.orderup.databinding.PlatsBinding
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Plats : Fragment() {
-
-    private var _binding: PlatsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        _binding = PlatsBinding.inflate(inflater, container, false) // Correct binding class name
-        return binding.root
-
-    }
+class Plats : Products() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+        // par exemple, modifier le titre de la page
+        setPageTitle("Plats")
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        // Modifier l'image si nécessaire
+        setImageResource(R.drawable.plat)
+
+        // Mettre à jour les produits spécifiques aux desserts
+        setRepositoryParameter("plats")
+
+        super.onViewCreated(view, savedInstanceState)
     }
 }

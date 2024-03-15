@@ -29,6 +29,11 @@ class Prisecommande : Fragment() {
         return binding.root
     }
 
+    private fun navigateToDestination(destinationId: Int) {
+
+        findNavController().navigate(destinationId, bundleOf("tableId" to tableId))
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -40,28 +45,11 @@ class Prisecommande : Fragment() {
         } ?: run {
             throw NullPointerException("Numéro de table manquant dans les arguments")
         }
-
-        binding.boissons.setOnClickListener {
-            // Naviguer vers la destination associée à l'action
-            findNavController().navigate(R.id.action_PriseCom_to_boissons,
-                bundleOf( "tableId" to tableId))
-        }
-        binding.plats.setOnClickListener {
-            // Naviguer vers la destination associée à l'action
-            findNavController().navigate(R.id.action_PriseCom_to_plats)
-        }
-        binding.entrees.setOnClickListener {
-            // Naviguer vers la destination associée à l'action
-            findNavController().navigate(R.id.action_PriseCom_to_entrees)
-        }
-        binding.desserts.setOnClickListener {
-            // Naviguer vers la destination associée à l'action
-            findNavController().navigate(R.id.action_PriseCom_to_desserts)
-        }
-        binding.valid.setOnClickListener {
-            // Naviguer vers la destination associée à l'action
-            findNavController().navigate(R.id.action_PriseCom_to_tables)
-        }
+        binding.boissons.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_boissons) }
+        binding.plats.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_plats) }
+        binding.entrees.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_entrees) }
+        binding.desserts.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_desserts) }
+        binding.valid.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_tables) }
     }
 
     override fun onDestroyView() {

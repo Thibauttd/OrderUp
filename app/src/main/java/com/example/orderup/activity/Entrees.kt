@@ -14,30 +14,18 @@ import com.example.orderup.databinding.FormulesBinding // Import correct binding
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Entrees : Fragment() {
-
-    private var _binding: EntreesBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        _binding = EntreesBinding.inflate(inflater, container, false) // Correct binding class name
-        return binding.root
-
-    }
+class Entrees : Products() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+        // par exemple, modifier le titre de la page
+        setPageTitle("Entrées")
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        // Modifier l'image si nécessaire
+        setImageResource(R.drawable.entree)
+
+        // Mettre à jour les produits spécifiques aux desserts
+        setRepositoryParameter("entrees")
+
+        super.onViewCreated(view, savedInstanceState)
     }
 }
