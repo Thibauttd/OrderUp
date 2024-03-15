@@ -35,7 +35,7 @@ class Role : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnPrecedent.setOnClickListener {
-            findNavController().navigate(R.id.action_Role_to_Formules)
+            findNavController().navigate(R.id.action_Role_to_Carte)
         }
 
         binding.iconeGerant.setOnClickListener {

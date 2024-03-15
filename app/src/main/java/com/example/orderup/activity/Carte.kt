@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
+import com.example.orderup.databinding.CarteBinding
 import com.example.orderup.databinding.FormulesBinding // Import correct binding class
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Formules : Fragment() {
+class Carte : Fragment() {
 
-    private var _binding: FormulesBinding? = null
+    private var _binding: CarteBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,7 +26,7 @@ class Formules : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FormulesBinding.inflate(inflater, container, false) // Correct binding class name
+        _binding = CarteBinding.inflate(inflater, container, false) // Correct binding class name
         return binding.root
 
     }
@@ -34,7 +35,12 @@ class Formules : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSuivant.setOnClickListener {
-            findNavController().navigate(R.id.action_Formule_to_Carte)
+            findNavController().navigate(R.id.action_Carte_to_Role)
+        }
+
+
+        binding.btnPrecedent.setOnClickListener {
+            findNavController().navigate(R.id.action_Carte_to_Formules)
         }
     }
 
