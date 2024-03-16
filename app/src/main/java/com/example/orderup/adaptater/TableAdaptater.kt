@@ -1,11 +1,9 @@
 import android.content.res.Resources
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -83,7 +81,7 @@ class TableAdapter(
 
             // Mettez à jour la couleur de la bordure en fonction du statut de la table
             val borderColor = if (table.occupied) {
-                Color.parseColor("#ff914d") // Orange pour occupé
+                Color.parseColor("#ff0000") // Orange pour occupé
             } else {
                 Color.parseColor("#15ad4c") // Vert pour non occupé
             }

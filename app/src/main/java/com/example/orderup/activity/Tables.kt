@@ -185,7 +185,22 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
     }
 
 
-    override fun onTableSwiped(table: TableModel) {
+    override fun onTableSwipedLeft(table: TableModel) {
+        // Mettre à jour l'attribut occupied de la table
+        val updatedTable = TableModel(
+            key = table.key,
+            numero = table.numero,
+            capacity = table.capacity,
+            occupied = !table.occupied
+        )
+        // Mettre à jour la table dans la base de données
+        tableRepository.updateTable(updatedTable)
+
+        // Actualiser l'adaptateur pour refléter les changements
+        tableAdapter.notifyDataSetChanged()
+    }
+
+    override fun onTableSwipedRight(table: TableModel) {
         findNavController().navigate(
             R.id.action_Tables_to_PrisesCommande,
             bundleOf("num_table" to table.numero, "tableId" to table.key)

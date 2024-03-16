@@ -5,10 +5,11 @@ import com.example.orderup.model.TableModel
 class TableItemTouchHelper(
     private val tableAdapter: TableAdapter,
     private val listener: OnTableSwipeListener
-) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
     interface OnTableSwipeListener {
-        fun onTableSwiped(table: TableModel)
+        fun onTableSwipedLeft(table: TableModel)
+        fun onTableSwipedRight(table: TableModel)
     }
 
     override fun onMove(
@@ -22,6 +23,10 @@ class TableItemTouchHelper(
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position = viewHolder.adapterPosition
         val table = tableAdapter.getTableAtPosition(position)
-        listener.onTableSwiped(table)
+        when (direction) {
+            ItemTouchHelper.LEFT -> listener.onTableSwipedLeft(table)
+            ItemTouchHelper.RIGHT -> listener.onTableSwipedRight(table)
+        }
     }
 }
+
