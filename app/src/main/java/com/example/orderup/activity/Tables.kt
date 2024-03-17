@@ -55,7 +55,6 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
         tableRepository.getAllTables(object : TableRepository.TablesListener {
             override fun onTablesReceived(tables: List<TableModel>) {
                 requireActivity().runOnUiThread {
-                    println("Tables received: $tables")
                     tableAdapter.updateData(tables)
                 }
             }
