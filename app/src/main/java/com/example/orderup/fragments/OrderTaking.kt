@@ -1,4 +1,4 @@
-package com.example.orderup.activity
+package com.example.orderup.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

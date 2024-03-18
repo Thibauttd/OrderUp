@@ -1,4 +1,4 @@
-package com.example.orderup.activity
+package com.example.orderup.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import com.example.orderup.R
 /**
  * A simple [Fragment] subclass for displaying main courses.
  */
-class Plats : Products() {
+class Dish : Products() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // The page title

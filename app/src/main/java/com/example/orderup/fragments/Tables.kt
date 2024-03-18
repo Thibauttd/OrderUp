@@ -1,4 +1,4 @@
-package com.example.orderup.activity
+package com.example.orderup.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderup.R
-import com.example.orderup.adaptater.TableAdapter
-import com.example.orderup.adaptater.TableItemTouchHelper
+import com.example.orderup.adapter.TableAdapter
+import com.example.orderup.adapter.TableItemTouchHelper
 import com.example.orderup.databinding.TablesBinding
 import com.example.orderup.model.TableModel
 import com.example.orderup.repository.TableRepository

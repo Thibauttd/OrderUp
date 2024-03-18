@@ -1,4 +1,4 @@
-package com.example.orderup.activity
+package com.example.orderup.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
-import com.example.orderup.databinding.FormulasBinding // Import correct binding class
+import com.example.orderup.databinding.WaiterBinding
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * A simple [Fragment] subclass serving as the default destination in the navigation.
+ * This fragment represents the role of a server in the application.
  */
-class Formulas : Fragment() {
+class Waiter : Fragment() {
 
-    private var _binding: FormulasBinding? = null
+    private var _binding: WaiterBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,7 +26,7 @@ class Formulas : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FormulasBinding.inflate(inflater, container, false)
+        _binding = WaiterBinding.inflate(inflater, container, false) // Correct binding class name
         return binding.root
 
     }
@@ -33,8 +34,9 @@ class Formulas : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSuivant.setOnClickListener {
-            findNavController().navigate(R.id.action_Formule_to_Carte)
+        // Navigate to the tables screen
+        binding.table.setOnClickListener {
+            findNavController().navigate(R.id.action_Serveur_to_Tables)
         }
     }
 

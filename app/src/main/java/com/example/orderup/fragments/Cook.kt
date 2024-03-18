@@ -1,4 +1,4 @@
-package com.example.orderup.activity
+package com.example.orderup.fragments
 
 import CookAdapter
 import android.os.Bundle

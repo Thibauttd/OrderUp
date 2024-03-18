@@ -1,4 +1,4 @@
-package com.example.orderup.adaptater
+package com.example.orderup.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater

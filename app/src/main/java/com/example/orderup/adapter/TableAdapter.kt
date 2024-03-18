@@ -1,4 +1,4 @@
-package com.example.orderup.adaptater
+package com.example.orderup.adapter
 
 import android.content.res.Resources
 import android.graphics.Color

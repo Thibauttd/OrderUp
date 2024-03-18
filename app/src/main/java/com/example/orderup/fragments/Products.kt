@@ -1,4 +1,4 @@
-package com.example.orderup.activity
+package com.example.orderup.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orderup.R
-import com.example.orderup.adaptater.ProduitsAdapter
+import com.example.orderup.adapter.ProduitsAdapter
 import com.example.orderup.databinding.ProductsBinding
 import com.example.orderup.model.MenuItemModel
 import com.example.orderup.model.OrderModel
