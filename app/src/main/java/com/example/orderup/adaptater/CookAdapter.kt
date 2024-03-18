@@ -53,7 +53,7 @@ class CookAdapter(private val onOrderClickListener: ((OrderModel) -> Unit)? = nu
                 println("quantity : $order.quantity")
                 // Mettre à jour les TextViews avec le nom de l'item et la quantité de commande
                 binding.textViewOrderQuantity.text = "Quantité: ${order.quantity}"
-                binding.textViewMenuItemName.text = "Nom: $itemName"
+                binding.textViewMenuItemName.text = "$itemName"
 
                 // Exécuter les mises à jour d'interface utilisateur
                 binding.executePendingBindings()
