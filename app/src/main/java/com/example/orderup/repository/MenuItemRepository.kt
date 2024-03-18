@@ -7,17 +7,11 @@ import com.example.orderup.model.MenuItem
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.tasks.await
+import java.util.concurrent.CountDownLatch
 
-class MenuItemRepository(private val category: String) {
-    private val database: DatabaseReference = Firebase.database.reference.child(category)
-
-    fun addItem(item: MenuItem) {
-        val key = database.push().key
-        key?.let {
-            val itemWithId = item.copy(id = it)
-            database.child(it).setValue(itemWithId)
-        }
-    }
+class MenuItemRepository(var category: String) {
+    private var database: DatabaseReference = Firebase.database.reference.child(category)
 
     fun getItem(itemId: String, callback: (MenuItem?) -> Unit) {
         database.child(itemId).get().addOnSuccessListener { dataSnapshot ->
@@ -26,6 +20,22 @@ class MenuItemRepository(private val category: String) {
         }.addOnFailureListener {
             callback(null)
         }
+    }
+
+     suspend fun getItemName(itemId: String): String? {
+        val categories = listOf("entrees", "plats", "desserts")
+
+        // Parcours des catégories pour récupérer le nom de l'item
+        categories.forEach { category ->
+            val dataSnapshot = database.child(category).child(itemId).child("name").get().await()
+            val itemName = dataSnapshot.getValue(String::class.java)
+            if (itemName != null) {
+                return itemName
+            }
+        }
+
+        // Si aucun nom d'item n'a été trouvé, renvoyer null
+        return null
     }
 
     fun getAllItems(callback: (List<MenuItem>) -> Unit) {

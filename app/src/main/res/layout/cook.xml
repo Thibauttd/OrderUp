@@ -20,10 +20,10 @@
             android:src="@drawable/logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.517" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -38,27 +38,14 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Filtrer"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
-            app:layout_constraintHorizontal_bias="0.818"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.221" />
-
-        <TextView
             android:id="@+id/textView2"
             android:layout_width="266dp"
             android:layout_height="40dp"
             android:text="Mes commandes"
             android:textSize="30sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="68dp"
-            tools:layout_editor_absoluteY="14dp" />
+            tools:layout_editor_absoluteX="39dp"
+            tools:layout_editor_absoluteY="30dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -66,8 +53,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/headerLayout"
-        android:layout_marginTop="191dp"
+        android:layout_below="@+id/headerLayout"
+        android:layout_marginTop="236dp"
         android:background="@android:color/white"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
@@ -80,5 +67,12 @@
         android:layout_height="74dp"
         android:backgroundTint="@color/white"
         android:src="@drawable/filtre" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtrer"
+        android:textSize="16sp" />
 
 </RelativeLayout>
