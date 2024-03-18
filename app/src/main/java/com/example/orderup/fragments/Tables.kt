@@ -64,7 +64,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
             }
 
             override fun onTablesError(error: String) {
-                Snackbar.make(view, "Error: $error", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(view, "Erreur: $error", Snackbar.LENGTH_SHORT).show()
             }
         })
 
@@ -91,7 +91,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_table, null)
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
-            .setTitle("Add Table")
+            .setTitle("Ajouter une table")
 
         val alertDialog = dialogBuilder.create()
 
@@ -118,13 +118,13 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
                 alertDialog.dismiss()
 
                 // Show a message or perform other actions if needed
-                Snackbar.make(requireView(), "New table added!", Snackbar.LENGTH_SHORT)
+                Snackbar.make(requireView(), "Nouvelle table ajoutée !", Snackbar.LENGTH_SHORT)
                     .show()
             } else {
                 // Show an error message if the information is not valid
                 Snackbar.make(
                     dialogView,
-                    "Please provide valid information",
+                    "Veuillez fournir des informations valides",
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
@@ -140,7 +140,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_table, null)
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
-            .setTitle("Edit Table")
+            .setTitle("Modifier la table")
 
         val alertDialog = dialogBuilder.create()
 
@@ -176,10 +176,10 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
                 alertDialog.dismiss()
 
                 // Show a message or perform other actions if needed
-                Snackbar.make(dialogView, "Table updated!", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(dialogView, "Table mise à jour !", Snackbar.LENGTH_SHORT).show()
             } else {
                 // Show an error message if the new information is not valid
-                Snackbar.make(dialogView, "Please provide valid information", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(dialogView, "Veuillez fournir des informations valides", Snackbar.LENGTH_SHORT).show()
             }
         }
 
