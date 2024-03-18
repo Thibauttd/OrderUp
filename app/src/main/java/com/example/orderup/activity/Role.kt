@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
-import com.example.orderup.databinding.FormulesBinding // Import correct binding class
 import com.example.orderup.databinding.RoleBinding
 
 /**
