@@ -78,6 +78,22 @@ class Menu : Fragment() {
             findNavController().navigate(R.id.action_Menu_to_Formulas)
         }
 
+        binding.desserts.setOnClickListener {
+            findNavController().navigate(R.id.action_Menu_to_Dessert)
+        }
+
+        binding.dish.setOnClickListener {
+            findNavController().navigate(R.id.action_Menu_to_Dish)
+        }
+
+        binding.starters.setOnClickListener {
+            findNavController().navigate(R.id.action_Menu_to_Starter)
+        }
+
+        binding.drinks.setOnClickListener {
+            findNavController().navigate(R.id.action_Menu_to_Drink)
+        }
+
         cameraPermission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         storagePermission = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 

@@ -28,6 +28,47 @@
         <action
             android:id="@+id/action_Menu_to_Formulas"
             app:destination="@id/formulas" />
+
+        <action
+            android:id="@+id/action_Menu_to_Dessert"
+            app:destination="@id/menu_dessert" />
+        <action
+            android:id="@+id/action_Menu_to_Dish"
+            app:destination="@id/menu_dish" />
+        <action
+            android:id="@+id/action_Menu_to_Drink"
+            app:destination="@id/menu_drink" />
+        <action
+            android:id="@+id/action_Menu_to_Starter"
+            app:destination="@id/menu_starter" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_dessert"
+        android:name="com.example.orderup.fragments.Menu_desserts"
+        android:label="Menu dessert"
+        tools:layout="@layout/menu_dessert">
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_dish"
+        android:name="com.example.orderup.fragments.Menu_dishs"
+        android:label="Menu dish"
+        tools:layout="@layout/menu_dish">
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_drink"
+        android:name="com.example.orderup.fragments.Menu_drinks"
+        android:label="Menu drink"
+        tools:layout="@layout/menu_drink">
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_starter"
+        android:name="com.example.orderup.fragments.Menu_starters"
+        android:label="Menu starter"
+        tools:layout="@layout/menu_starter">
     </fragment>
 
     <fragment

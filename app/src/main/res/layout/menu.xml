@@ -67,7 +67,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/plats"
+            android:id="@+id/dish"
             android:layout_width="286dp"
             android:layout_height="71dp"
             android:background="@drawable/border_ordertaking"
@@ -107,7 +107,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/entrees"
+            android:id="@+id/starters"
             android:layout_width="286dp"
             android:layout_height="71dp"
             android:background="@drawable/border_ordertaking"
@@ -147,7 +147,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/boissons"
+            android:id="@+id/drinks"
             android:layout_width="286dp"
             android:layout_height="71dp"
             android:background="@drawable/border_ordertaking"
