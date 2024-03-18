@@ -6,7 +6,6 @@ import android.app.ProgressDialog
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,18 +14,15 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
-import com.example.orderup.databinding.CarteBinding
+import com.example.orderup.databinding.MenuBinding
 import com.google.android.material.button.MaterialButton
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.common.InputImage
@@ -34,9 +30,12 @@ import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognizer
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 
-class Carte : Fragment() {
+/**
+ * A simple [Fragment] subclass as the second destination in the navigation.
+ */
+class Menu : Fragment() {
 
-    private var _binding: CarteBinding? = null
+    private var _binding: MenuBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var inputImageBtn: MaterialButton
@@ -64,7 +63,7 @@ class Carte : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = CarteBinding.inflate(inflater, container, false)
+        _binding = MenuBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -105,6 +104,7 @@ class Carte : Fragment() {
         }
     }
 
+    // Method to recognize text from an image
     private fun recognizeTextFromImage() {
         progressDialog.setMessage("Preparing Image...")
         progressDialog.show()
@@ -117,7 +117,7 @@ class Carte : Fragment() {
                     progressDialog.dismiss()
                     val recognizedText: String = visionText.text
                     recognizedTextEt.setText(recognizedText)
-                    // Filtrer et répartir le texte reconnu
+                    // Filter and categorize recognized text
                     filterAndCategorizeText(recognizedText)
                 }
                 .addOnFailureListener { e: Exception ->
@@ -130,12 +130,13 @@ class Carte : Fragment() {
         }
     }
 
+    // Method to filter and categorize recognized text
     private fun filterAndCategorizeText(text: String) {
         val lines = text.split("\n")
         var currentCategory: MutableList<String>? = null
 
         for (line in lines) {
-            // Identifier la catégorie actuelle
+            // Identify the current category
             when {
                 line.contains("Boisson", ignoreCase = true) -> {
                     currentCategory = boissonsList
@@ -149,7 +150,7 @@ class Carte : Fragment() {
                 line.contains("Dessert", ignoreCase = true) -> {
                     currentCategory = dessertsList
                 }
-                // Si la ligne ne contient pas de catégorie, ajouter l'élément à la liste actuelle
+                // If the line doesn't contain a category, add the item to the current list
                 currentCategory != null -> {
                     currentCategory.add(line)
                 }
@@ -162,15 +163,11 @@ class Carte : Fragment() {
         println("Desserts: $dessertsList")
     }
 
-
-
-
-
-
+    // Method to display options for selecting image source
     private fun showInputImageDialog() {
         val popupMenu = PopupMenu(requireContext(), inputImageBtn)
-        popupMenu.menu.add(Menu.NONE, 1, 1, "Caméra")
-        popupMenu.menu.add(Menu.NONE, 2, 2, "Galerie")
+        popupMenu.menu.add(Menu.NONE, 1, 1, "Camera")
+        popupMenu.menu.add(Menu.NONE, 2, 2, "Gallery")
         popupMenu.show()
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -193,6 +190,7 @@ class Carte : Fragment() {
         }
     }
 
+    // Method to pick image from gallery
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -211,6 +209,7 @@ class Carte : Fragment() {
             }
         }
 
+    // Method to pick image from camera
     private fun pickImageCamera() {
         val values = ContentValues()
         values.put(MediaStore.Images.Media.TITLE, "Sample Title")
@@ -230,30 +229,34 @@ class Carte : Fragment() {
             }
         }
 
-
+    // Method to display toast messages
     private fun showToast(message: String){
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
+    // Method to check storage permission
     private fun checkStoragePermission() : Boolean{
         return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
     }
 
+    // Method to check camera permissions
     private fun checkCameraPermissions() : Boolean{
         val cameraResult = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
         val storageResult = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
         return cameraResult && storageResult
     }
 
+    // Method to request storage permission
     private fun requestStoragePermission(){
         ActivityCompat.requestPermissions(requireActivity(), storagePermission, STORAGE_REQUEST)
     }
 
+    // Method to request camera permission
     private fun requestCameraPermission(){
         ActivityCompat.requestPermissions(requireActivity(), cameraPermission, CAMERA_REQUEST_CODE)
     }
 
-
+    // Method to handle permission request results
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,

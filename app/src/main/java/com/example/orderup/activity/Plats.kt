@@ -6,18 +6,18 @@ import android.view.View
 import com.example.orderup.R
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * A simple [Fragment] subclass for displaying main courses.
  */
 class Plats : Products() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // par exemple, modifier le titre de la page
+        // The page title
         setPageTitle("Plats")
 
-        // Modifier l'image si nécessaire
-        setImageResource(R.drawable.plat)
+        // The image if necessary
+        setImageResource(R.drawable.dish)
 
-        // Mettre à jour les produits spécifiques aux desserts
+        // Update products specific to main courses
         setRepositoryParameter("plats")
 
         super.onViewCreated(view, savedInstanceState)

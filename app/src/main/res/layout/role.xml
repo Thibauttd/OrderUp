@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Formules">
+    tools:context=".activity.Cook">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             android:layout_width="145dp"
             android:layout_height="120dp"
             android:background="@color/white"
-            android:src="@drawable/plus"
+            android:src="@drawable/more"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.94"
@@ -58,7 +58,7 @@
             android:layout_height="71dp"
             android:layout_marginStart="35dp"
             android:layout_marginEnd="40dp"
-            android:src="@drawable/chef"
+            android:src="@drawable/cook"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -70,7 +70,7 @@
             android:layout_height="69dp"
             android:layout_marginStart="56dp"
             android:layout_marginEnd="35dp"
-            android:src="@drawable/gerant"
+            android:src="@drawable/manager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/icone_serveur"
             app:layout_constraintHorizontal_bias="0.951"
@@ -162,7 +162,7 @@
             android:id="@+id/icone_serveur"
             android:layout_width="60dp"
             android:layout_height="69dp"
-            android:src="@drawable/serveur"
+            android:src="@drawable/waiter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.551"

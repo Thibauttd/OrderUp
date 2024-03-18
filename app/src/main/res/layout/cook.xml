@@ -32,7 +32,7 @@
         android:layout_marginEnd="29dp"
         android:layout_marginBottom="802dp"
         android:contentDescription="@string/chef_image_description"
-        android:src="@drawable/chef" />
+        android:src="@drawable/cook" />
 
     <TextView
         android:id="@+id/textView4"
@@ -69,7 +69,7 @@
         android:layout_marginEnd="37dp"
         android:backgroundTint="@color/white"
         android:contentDescription="@string/filtre_button_description"
-        android:src="@drawable/filtre" />
+        android:src="@drawable/filter" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

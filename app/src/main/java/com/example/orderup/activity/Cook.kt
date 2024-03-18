@@ -1,15 +1,15 @@
 package com.example.orderup.activity
 
-import CookAdapter
-import OrderRepository
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.orderup.adaptater.CookAdapter
 import com.example.orderup.databinding.CookBinding
 import com.example.orderup.model.OrderModel
+import com.example.orderup.repository.OrderRepository
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -19,13 +19,13 @@ class Cook : Fragment() {
     private var _binding: CookBinding? = null
     private val binding get() = _binding!!
 
-    // Déclarez l'adapter en tant que lateinit var pour l'initialiser plus tard
+    // Declare the adapter as lateinit var to initialize it later
     private lateinit var adapter: CookAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = CookBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,18 +35,18 @@ class Cook : Fragment() {
 
         val allOrders = mutableListOf<OrderModel>()
 
-        // Initialisez le RecyclerView avec un LinearLayoutManager
+        // Initialize the RecyclerView with a LinearLayoutManager
         adapter = CookAdapter()
 
-        // Assurez-vous de définir l'adapter sur le RecyclerView avant d'appeler getCookableOrders
+        // Make sure to set the adapter on the RecyclerView before calling getCookableOrders
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
-        // Récupérez et affichez les commandes
+        // Fetch and display orders
         val orderRepository = OrderRepository()
         orderRepository.getCookableOrders { orders ->
             allOrders.addAll(orders)
-            // Assurez-vous de soumettre la liste à l'adapter sur le thread principal
+            // Make sure to submit the list to the adapter on the main thread
             requireActivity().runOnUiThread {
                 adapter.submitList(allOrders)
             }
@@ -55,9 +55,7 @@ class Cook : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Assurez-vous de définir _binding sur null pour éviter les fuites de mémoire
+        // Set _binding to null to avoid memory leaks
         _binding = null
     }
 }
-
-

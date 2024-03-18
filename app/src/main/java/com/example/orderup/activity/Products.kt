@@ -1,7 +1,5 @@
 package com.example.orderup.activity
 
-import OrderRepository
-import ProduitsAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,19 +8,26 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orderup.R
+import com.example.orderup.adaptater.ProduitsAdapter
 import com.example.orderup.databinding.ProductsBinding
-import com.example.orderup.model.MenuItem
+import com.example.orderup.model.MenuItemModel
 import com.example.orderup.model.OrderModel
 import com.example.orderup.repository.MenuItemRepository
+import com.example.orderup.repository.OrderRepository
+
+/**
+ * A base [Fragment] class for displaying product categories and managing orders.
+ * Subclasses should implement specific functionality for different product categories.
+ */
 open class Products : Fragment() {
 
     private var pageTitle: String = ""
-    private var imageResId: Int = R.drawable.boissons // Image par défaut
-    private lateinit var repositoryParam: String // Paramètre du repository
+    private var imageResId: Int = R.drawable.drink // Default image
+    private lateinit var repositoryParam: String // Repository parameter
     private lateinit var menuItemRepository: MenuItemRepository
     private lateinit var orderRepository: OrderRepository
     private lateinit var tableId: String
-    private var produitsList: List<Pair<MenuItem, Int>> = emptyList()
+    private var produitsList: List<Pair<MenuItemModel, Int>> = emptyList()
     private var produitsOriginaux: Map<String, Int> = emptyMap()
 
     private var _binding: ProductsBinding? = null
@@ -39,10 +44,10 @@ open class Products : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Mettre à jour le titre de la page
+        // Update page title
         binding.textView2.text = pageTitle
 
-        // Mettre à jour l'image
+        // Update image
         binding.imageView2.setImageResource(imageResId)
 
         menuItemRepository = MenuItemRepository(repositoryParam)
@@ -64,20 +69,32 @@ open class Products : Fragment() {
         }
     }
 
+    /**
+     * Set the page title.
+     * @param title The title to be set.
+     */
     fun setPageTitle(title: String) {
         pageTitle = title
     }
 
+    /**
+     * Set the image resource for the product category.
+     * @param imageResourceId The resource ID of the image.
+     */
     fun setImageResource(imageResourceId: Int) {
         imageResId = imageResourceId
     }
 
+    /**
+     * Set the repository parameter for fetching product data.
+     * @param param The parameter to be set.
+     */
     fun setRepositoryParameter(param: String) {
         repositoryParam = param
     }
 
-    private fun getProduitsListAndCounts(callback: (List<Pair<MenuItem, Int>>) -> Unit) {
-        val newProduitsList = mutableListOf<Pair<MenuItem, Int>>()
+    private fun getProduitsListAndCounts(callback: (List<Pair<MenuItemModel, Int>>) -> Unit) {
+        val newProduitsList = mutableListOf<Pair<MenuItemModel, Int>>()
 
         menuItemRepository.getAllItems { menuItems ->
             orderRepository.getOrderCountsForTable(tableId) { orderCounts ->
@@ -86,7 +103,7 @@ open class Products : Fragment() {
                     newProduitsList.add(Pair(menuItem, quantityOrdered))
                 }
 
-                // Initialiser produitsOriginaux avec les quantités initiales
+                // Initialize produitsOriginaux with the initial quantities
                 produitsOriginaux = orderCounts
 
                 callback(newProduitsList)
@@ -94,7 +111,10 @@ open class Products : Fragment() {
         }
     }
 
-    fun validerCommande() {
+    /**
+     * Validate the current order and update the database.
+     */
+    private fun validerCommande() {
         val recyclerView = binding.recyclerViewProduits
         val adapter = recyclerView.adapter as? ProduitsAdapter
 
@@ -109,20 +129,20 @@ open class Products : Fragment() {
                         product.id
                     ) { existingOrder ->
                         if (existingOrder != null) {
-                            // Mettre à jour la quantité de l'ordre existant
+                            // Update quantity of existing order
                             val updatedQuantity =
                                 existingOrder.quantity + nouvelleQuantite - ancienneQuantite
                             existingOrder.quantity = updatedQuantity
-                            orderRepository.updateOrder(existingOrder) { success ->
+                            orderRepository.updateOrder(existingOrder) {
                             }
                         } else {
-                            // Aucun ordre existant, créer un nouvel ordre
+                            // No existing order, create a new order
                             val newOrder = OrderModel(
                                 tableid = tableId,
                                 menuitemid = product.id,
                                 quantity = nouvelleQuantite
                             )
-                            orderRepository.addOrder(newOrder) { success ->
+                            orderRepository.addOrder(newOrder) {
                             }
                         }
                     }

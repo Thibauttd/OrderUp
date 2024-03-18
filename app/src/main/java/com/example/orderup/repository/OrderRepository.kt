@@ -1,6 +1,7 @@
-import com.example.orderup.model.MenuItem
+package com.example.orderup.repository
+
+import com.example.orderup.model.MenuItemModel
 import com.example.orderup.model.OrderModel
-import com.example.orderup.repository.MenuItemRepository
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -11,15 +12,18 @@ import com.google.firebase.ktx.Firebase
 
 class OrderRepository {
 
+    // Reference to the Firebase database for orders
     private val database: DatabaseReference = Firebase.database.reference.child("orders")
-    private var allMenuItems = mutableListOf<MenuItem>()
 
-    // Ajouter une commande à la base de données
+    // List to store all menu items
+    private var allMenuItems = mutableListOf<MenuItemModel>()
+
+    // Add an order to the database
     fun addOrder(order: OrderModel, callback: (Boolean) -> Unit) {
-        val key = database.push().key ?: return // Générer une clé aléatoire
-        val orderWithId = OrderModel(key, order.tableid, order.menuitemid, order.quantity, order.ready) // Associer la clé générée à la commande
+        val key = database.push().key ?: return // Generate a random key
+        val orderWithId = OrderModel(key, order.tableid, order.menuitemid, order.quantity, order.ready) // Associate the generated key with the order
 
-        database.child(key).setValue(orderWithId) // Ajouter la commande avec la clé générée à la base de données
+        database.child(key).setValue(orderWithId) // Add the order with the generated key to the database
             .addOnSuccessListener {
                 callback(true)
             }
@@ -28,11 +32,12 @@ class OrderRepository {
             }
     }
 
+    // Update an existing order in the database
     fun updateOrder(order: OrderModel, callback: (Boolean) -> Unit) {
         val orderRef = database.child(order.id)
 
         if (order.quantity == 0) {
-            // Supprimer l'ordre s'il n'y a plus de quantité
+            // Remove the order if there's no quantity left
             orderRef.removeValue()
                 .addOnSuccessListener {
                     callback(true)
@@ -41,7 +46,7 @@ class OrderRepository {
                     callback(false)
                 }
         } else {
-            // Mettre à jour la quantité de l'ordre
+            // Update the quantity of the order
             orderRef.setValue(order)
                 .addOnSuccessListener {
                     callback(true)
@@ -52,6 +57,7 @@ class OrderRepository {
         }
     }
 
+    // Get all orders from the database
     fun getAllOrders(callback: (List<OrderModel>) -> Unit) {
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -69,7 +75,7 @@ class OrderRepository {
         })
     }
 
-    // Récupérer toutes les commandes pour une table spécifique
+    // Get all orders for a specific table from the database
     fun getOrdersForTable(tableId: String, callback: (List<OrderModel>) -> Unit) {
         database.orderByChild("tableid").equalTo(tableId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -88,6 +94,7 @@ class OrderRepository {
             })
     }
 
+    // Get the counts of orders for each menu item for a specific table
     fun getOrderCountsForTable(tableId: String, callback: (Map<String, Int>) -> Unit) {
         getOrdersForTable(tableId) { orders ->
             val orderCounts = mutableMapOf<String, Int>()
@@ -105,6 +112,7 @@ class OrderRepository {
         }
     }
 
+    // Get an existing order for a specific table and menu item
     fun getExistingOrderForTableAndMenuItem(tableId: String, menuItemId: String, callback: (OrderModel?) -> Unit) {
         database.orderByChild("tableid").equalTo(tableId)
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -116,59 +124,59 @@ class OrderRepository {
                             return
                         }
                     }
-                    // Aucun ordre existant trouvé pour cette table et cet item
+                    // No existing order found for this table and item
                     callback(null)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Gestion de l'erreur
+                    // Handle error
                     callback(null)
                 }
             })
     }
 
+    // Get cookable orders from the database
     fun getCookableOrders(callback: (List<OrderModel>) -> Unit) {
-        // Référence à la base de données des commandes
+        // Reference to the orders database
         val ordersRef = OrderRepository().database
 
-        // Récupérer tous les éléments de menu
+        // Get all menu items
         getAppetizerItems { appetizerItems ->
             getDishItems { dishItems ->
                 getDessertItems { dessertItems ->
-                    // Une fois que tous les éléments de menu sont récupérés, les ajouter à allMenuItems
-                    val allMenuItems = mutableListOf<MenuItem>().apply {
+                    // Once all menu items are retrieved, add them to allMenuItems
+                    val allMenuItems = mutableListOf<MenuItemModel>().apply {
                         addAll(appetizerItems)
                         addAll(dishItems)
                         addAll(dessertItems)
                     }
-                    println("all_menu_items : $allMenuItems")
 
-                    // Écouter les nouvelles commandes ajoutées à la base de données
+                    // Listen for new orders added to the database
                     ordersRef.addChildEventListener(object : ChildEventListener {
                         override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                             val newOrder = snapshot.getValue(OrderModel::class.java)
                             newOrder?.let { order ->
-                                // Vérifier si la commande est pour un élément de menu existant
+                                // Check if the order is for an existing menu item
                                 if (allMenuItems.any { it.id == order.menuitemid }) {
-                                    callback(listOf(order)) // Appeler le callback avec la nouvelle commande
+                                    callback(listOf(order)) // Call the callback with the new order
                                 }
                             }
                         }
 
                         override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                            // Logique pour gérer les modifications de commande si nécessaire
+                            // Logic to handle order changes if needed
                         }
 
                         override fun onChildRemoved(snapshot: DataSnapshot) {
-                            // Logique pour gérer les suppressions de commande si nécessaire
+                            // Logic to handle order removals if needed
                         }
 
                         override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                            // Logique pour gérer les déplacements de commande si nécessaire
+                            // Logic to handle order movements if needed
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                            // Gérer les erreurs si nécessaire
+                            // Handle errors if needed
                         }
                     })
                 }
@@ -176,51 +184,47 @@ class OrderRepository {
         }
     }
 
-
-
-
-    private fun getAppetizerItems(callback: (List<MenuItem>) -> Unit) {
+    // Get appetizer items from the database
+    private fun getAppetizerItems(callback: (List<MenuItemModel>) -> Unit) {
         if (allMenuItems.isEmpty()) {
-            val menuItemRepository: MenuItemRepository = MenuItemRepository("entrees")
+            val menuItemRepository = MenuItemRepository("entrees")
             menuItemRepository.getAllItems { items ->
                 callback(items)
             }
         } else {
-            callback(allMenuItems) // Utilisez les éléments déjà stockés s'ils existent
+            callback(allMenuItems) // Use already stored items if they exist
         }
     }
 
-    private fun getDishItems(callback: (List<MenuItem>) -> Unit) {
+    // Get dish items from the database
+    private fun getDishItems(callback: (List<MenuItemModel>) -> Unit) {
         if (allMenuItems.isEmpty()) {
-            val menuItemRepository: MenuItemRepository = MenuItemRepository("plats")
+            val menuItemRepository = MenuItemRepository("plats")
             menuItemRepository.getAllItems { items ->
                 callback(items)
             }
         } else {
-            callback(allMenuItems) // Utilisez les éléments déjà stockés s'ils existent
+            callback(allMenuItems) // Use already stored items if they exist
         }
     }
 
-    private fun getDessertItems(callback: (List<MenuItem>) -> Unit) {
+    // Get dessert items from the database
+    private fun getDessertItems(callback: (List<MenuItemModel>) -> Unit) {
         if (allMenuItems.isEmpty()) {
-            val menuItemRepository: MenuItemRepository = MenuItemRepository("desserts")
+            val menuItemRepository = MenuItemRepository("desserts")
             menuItemRepository.getAllItems { items ->
                 callback(items)
             }
         } else {
-            callback(allMenuItems) // Utilisez les éléments déjà stockés s'ils existent
+            callback(allMenuItems) // Use already stored items if they exist
         }
     }
 
+    // Filter orders by menu items
     private fun filterOrdersByMenuItems(orders: List<OrderModel>): List<OrderModel> {
-        // Filtrer les commandes pour garder uniquement celles dont le menuItemId est présent dans la liste allMenuItems
+        // Filter orders to keep only those whose menuItemId is present in the allMenuItems list
         return orders.filter { order ->
-            println("order : ${order.menuitemid}")
-            println("menu_items : $allMenuItems")
-            allMenuItems.any {
-                println("it_id : $it.id")
-                it.id == order.menuitemid }
+            allMenuItems.any { it.id == order.menuitemid }
         }
     }
-
 }

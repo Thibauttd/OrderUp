@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.orderup.databinding.FormulesBinding // Import correct binding class
-import com.example.orderup.databinding.GerantBinding
-import com.example.orderup.databinding.RoleBinding
+import com.example.orderup.R
+import com.example.orderup.databinding.FormulasBinding // Import correct binding class
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Gerant : Fragment() {
+class Formulas : Fragment() {
 
-    private var _binding: GerantBinding? = null
+    private var _binding: FormulasBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,15 +23,19 @@ class Gerant : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        _binding = GerantBinding.inflate(inflater, container, false) // Correct binding class name
+        _binding = FormulasBinding.inflate(inflater, container, false)
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnSuivant.setOnClickListener {
+            findNavController().navigate(R.id.action_Formule_to_Carte)
+        }
     }
 
     override fun onDestroyView() {

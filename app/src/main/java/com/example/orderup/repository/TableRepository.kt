@@ -5,33 +5,39 @@ import com.google.firebase.database.*
 import com.google.firebase.database.DatabaseReference
 
 class TableRepository {
+    // Reference to the Firebase database for tables
     private val databaseRef: DatabaseReference = FirebaseDatabase.getInstance().getReference("tables")
+
+    // List to store all tables
     private var tablesList: List<TableModel> = emptyList()
 
+    // Add a table to the database
     fun addTable(table: TableModel) {
-        // Ajouter la table à la base de données avec un numéro vide
+        // Add the table to the database with an empty number
         val key = databaseRef.push().key ?: return
         table.key = key
         databaseRef.child(key).setValue(table)
     }
 
+    // Update a table in the database
     fun updateTable(table: TableModel) {
-        // Mettre à jour la table dans la base de données en utilisant la clé générée automatiquement
+        // Update the table in the database using the automatically generated key
         databaseRef.child(table.key).setValue(table)
     }
 
+    // Get all tables from the database
     fun getAllTables(listener: TablesListener) {
-        // Ajouter un écouteur pour les changements dans la base de données
+        // Add a listener for changes in the database
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 tablesList = snapshot.children.mapNotNull { tableSnapshot ->
-                    // Récupérer la clé de la table depuis la clé de l'enfant
+                    // Get the table key from the child key
                     val key = tableSnapshot.key ?: return@mapNotNull null
 
-                    // Récupérer les autres propriétés de la table
+                    // Get the other properties of the table
                     val table = tableSnapshot.getValue(TableModel::class.java) ?: return@mapNotNull null
 
-                    // Créer un TableModelWithKey en utilisant la clé générée automatiquement
+                    // Create a TableModelWithKey using the automatically generated key
                     TableModel(key, table.numero, table.capacity, table.occupied)
                 }
                 listener.onTablesReceived(tablesList)
@@ -43,14 +49,14 @@ class TableRepository {
         })
     }
 
+    // Check if there are occupied tables
     fun hasOccupiedTables(): Boolean {
         return tablesList.any { it.occupied }
     }
 
+    // Listener interface for table data
     interface TablesListener {
         fun onTablesReceived(tables: List<TableModel>)
         fun onTablesError(error: String)
     }
 }
-
-

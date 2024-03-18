@@ -11,18 +11,15 @@ import com.example.orderup.R
 class Desserts : Products() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // par exemple, modifier le titre de la page
+        // For example, modify the page title
         setPageTitle("Desserts")
 
-        // Modifier l'image si nécessaire
+        // Change the image if necessary
         setImageResource(R.drawable.dessert)
 
-        // Mettre à jour les produits spécifiques aux desserts
+        // Update products specific to desserts
         setRepositoryParameter("desserts")
 
         super.onViewCreated(view, savedInstanceState)
     }
-
-
 }
-

@@ -1,3 +1,5 @@
+package com.example.orderup.adaptater
+
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -17,20 +19,24 @@ class TableAdapter(
     private val onTableLongClickListener: OnTableLongClickListener? = null
 ) : RecyclerView.Adapter<TableAdapter.ViewHolder>() {
 
+    // Create ViewHolder for each item in the RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_table, parent, false)
         return ViewHolder(view)
     }
 
+    // Bind data to the ViewHolder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val table = tables[position]
         holder.bind(table)
     }
 
+    // Get the total number of items in the list
     override fun getItemCount(): Int {
         return tables.size
     }
 
+    // Method to create a copy of the table model
     private fun copyTable(original: TableModel): TableModel {
         return TableModel(
             key = original.key,
@@ -39,26 +45,31 @@ class TableAdapter(
             occupied = original.occupied
         )
     }
+
+    // Method to update the dataset and notify changes
     fun updateData(newTables: List<TableModel>) {
         tables = newTables
         notifyDataSetChanged()
     }
 
+    // Interface for handling table clicks
     interface OnTableClickListener {
         fun onTableClick(table: TableModel)
     }
 
+    // Interface for handling long clicks on tables
     interface OnTableLongClickListener {
         fun onTableLongClick(table: TableModel)
     }
 
+    // ViewHolder class to hold the views for each table item
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val frameLayout: LinearLayout = itemView.findViewById(R.id.frameLayout)
         private val textNumero: TextView = itemView.findViewById(R.id.textNumero)
         private val textCapacity: TextView = itemView.findViewById(R.id.textCapacity)
 
         init {
-            // Gestion des clics sur une table
+            // Handle clicks on a table
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -66,7 +77,7 @@ class TableAdapter(
                 }
             }
 
-            // Gestion des clics longs sur une table
+            // Handle long clicks on a table
             itemView.setOnLongClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -76,32 +87,33 @@ class TableAdapter(
             }
         }
 
+        // Bind table data to views
         fun bind(table: TableModel) {
             val context = frameLayout.context
 
-            // Mettez à jour la couleur de la bordure en fonction du statut de la table
+            // Update border color based on table status
             val borderColor = if (table.occupied) {
-                Color.parseColor("#ff0000") // Orange pour occupé
+                Color.parseColor("#ff0000") // Orange for occupied
             } else {
-                Color.parseColor("#15ad4c") // Vert pour non occupé
+                Color.parseColor("#15ad4c") // Green for not occupied
             }
 
             val roundedRectangleDrawable = ContextCompat.getDrawable(context, R.drawable.rounded_rectangle) as GradientDrawable
             roundedRectangleDrawable.setStroke(3.dpToPx(context.resources), borderColor)
             frameLayout.background = roundedRectangleDrawable
 
-            // Mettez à jour les autres éléments de l'interface utilisateur
+            // Update other UI elements
             textNumero.text = "Table n°${table.numero}"
-            textCapacity.text = "Capacité: ${table.capacity}"
+            textCapacity.text = "Capacity: ${table.capacity}"
         }
     }
 
+    // Extension function to convert dp to pixels
     fun Int.dpToPx(resources: Resources): Int =
         (this * resources.displayMetrics.density).toInt()
 
-
+    // Method to get the table model at a specific position
     fun getTableAtPosition(position: Int): TableModel {
         return tables[position]
     }
-
 }

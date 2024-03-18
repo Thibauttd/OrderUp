@@ -1,7 +1,6 @@
 package com.example.orderup.activity
 
-import TableAdapter
-import TableItemTouchHelper
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +16,16 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderup.R
+import com.example.orderup.adaptater.TableAdapter
+import com.example.orderup.adaptater.TableItemTouchHelper
 import com.example.orderup.databinding.TablesBinding
 import com.example.orderup.model.TableModel
 import com.example.orderup.repository.TableRepository
 import com.google.android.material.snackbar.Snackbar
 
+/**
+ * A fragment representing the tables section of the application.
+ */
 class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelper.OnTableSwipeListener {
 
     private val tableRepository = TableRepository()
@@ -36,7 +40,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = TablesBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -45,13 +49,13 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
         tableAdapter = TableAdapter(emptyList(), this, null)
         recyclerView.adapter = tableAdapter
 
-        // Créer l'ItemTouchHelper et l'attacher au RecyclerView
+        // Create ItemTouchHelper and attach it to RecyclerView
         val tableSwipeListener: TableItemTouchHelper.OnTableSwipeListener = this
         val tableItemTouchHelper = TableItemTouchHelper(tableAdapter, tableSwipeListener)
         itemTouchHelper = ItemTouchHelper(tableItemTouchHelper)
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
-        // Récupérer toutes les tables et afficher
+        // Get all tables and display
         tableRepository.getAllTables(object : TableRepository.TablesListener {
             override fun onTablesReceived(tables: List<TableModel>) {
                 requireActivity().runOnUiThread {
@@ -60,14 +64,14 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
             }
 
             override fun onTablesError(error: String) {
-                Snackbar.make(view, "Erreur: $error", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(view, "Error: $error", Snackbar.LENGTH_SHORT).show()
             }
         })
 
-        // Initialisation du bouton
+        // Initialize the add table button
         val btnAddTable: ImageButton = view.findViewById(R.id.btnAddTable)
 
-        // Gestionnaire de clic du bouton
+        // Button click handler
         btnAddTable.setOnClickListener {
             createNewTable()
         }
@@ -80,122 +84,123 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
         _binding = null
     }
 
-    // Fonction pour créer une nouvelle table
+    // Function to create a new table
     private fun createNewTable() {
-        // Afficher la boîte de dialogue pour ajouter une nouvelle table
+        // Show the dialog to add a new table
         val dialogView =
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_table, null)
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
-            .setTitle("Ajouter Table")
+            .setTitle("Add Table")
 
         val alertDialog = dialogBuilder.create()
 
-        // Gestionnaire de clic pour le bouton "Ajouter Table" dans la boîte de dialogue
+        // Click handler for the "Add Table" button in the dialog
         val btnAddTable = dialogView.findViewById<Button>(R.id.btnAddTable)
         btnAddTable.setOnClickListener {
-            // Récupérer les informations depuis les champs de la boîte de dialogue
+            // Get information from the fields in the dialog
             val editTextNumber = dialogView.findViewById<EditText>(R.id.editTextNumber)
             val editTextCapacity = dialogView.findViewById<EditText>(R.id.editTextCapacity)
 
             val numero = editTextNumber.text.toString()
             val capacity = editTextCapacity.text.toString().toIntOrNull()
 
-            // Vérifier si les informations sont valides
+            // Check if the information is valid
             if (numero.isNotEmpty() && capacity != null && capacity > 0) {
-                // Créer une nouvelle table avec les informations
+                // Create a new table with the information
                 val newTable =
                     TableModel(key = "none", numero = numero, capacity = capacity, occupied = false)
 
-                // Ajouter la nouvelle table à la base de données
+                // Add the new table to the database
                 tableRepository.addTable(newTable)
 
-                // Fermer la boîte de dialogue
+                // Dismiss the dialog
                 alertDialog.dismiss()
 
-                // Afficher un message ou effectuer d'autres actions si nécessaire
-                Snackbar.make(requireView(), "Nouvelle table ajoutée!", Snackbar.LENGTH_SHORT)
+                // Show a message or perform other actions if needed
+                Snackbar.make(requireView(), "New table added!", Snackbar.LENGTH_SHORT)
                     .show()
             } else {
-                // Afficher un message d'erreur si les informations ne sont pas valides
+                // Show an error message if the information is not valid
                 Snackbar.make(
                     dialogView,
-                    "Veuillez fournir des informations valides",
+                    "Please provide valid information",
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
         }
 
-        // Afficher la boîte de dialogue
+        // Show the dialog
         alertDialog.show()
     }
 
     override fun onTableClick(table: TableModel) {
-        // Afficher la boîte de dialogue pour mettre à jour la table sélectionnée
+        // Show the dialog to update the selected table
         val dialogView =
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_edit_table, null)
         val dialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
-            .setTitle("Modifier Table")
+            .setTitle("Edit Table")
 
         val alertDialog = dialogBuilder.create()
 
-        // Récupérer les vues de la boîte de dialogue
+        // Get views from the dialog
         val editTextNumber = dialogView.findViewById<EditText>(R.id.editTextNumber)
         val editTextCapacity = dialogView.findViewById<EditText>(R.id.editTextCapacity)
         val btnUpdateTable = dialogView.findViewById<Button>(R.id.btnUpdateTable)
 
-        // Pré-remplir les champs avec les informations de la table sélectionnée
+        // Pre-fill fields with information from the selected table
         editTextNumber.setText(table.numero)
         editTextCapacity.setText(table.capacity.toString())
 
-        // Gestionnaire de clic pour le bouton "Modifier Table" dans la boîte de dialogue
+        // Click handler for the "Update Table" button in the dialog
         btnUpdateTable.setOnClickListener {
-            // Récupérer les nouvelles informations depuis les champs de la boîte de dialogue
+            // Get new information from the fields in the dialog
             val newNumero = editTextNumber.text.toString()
             val newCapacity = editTextCapacity.text.toString().toIntOrNull()
 
-            // Vérifier si les nouvelles informations sont valides
+            // Check if the new information is valid
             if (newNumero.isNotEmpty() && newCapacity != null && newCapacity > 0) {
-                // Mettez à jour la table avec les nouvelles informations
-                // Créer une nouvelle instance de TableModel avec les valeurs mises à jour
+                // Update the table with the new information
+                // Create a new instance of TableModel with the updated values
                 val updatedTable = TableModel(
                     key = table.key,
                     numero = newNumero,
                     capacity = newCapacity,
-                    occupied = table.occupied // Conservez la valeur existante d'occupied
+                    occupied = table.occupied // Keep the existing value of occupied
                 )
-                // Mettez à jour la table dans la base de données
+                // Update the table in the database
                 tableRepository.updateTable(updatedTable)
 
-                // Fermer la boîte de dialogue
+                // Dismiss the dialog
                 alertDialog.dismiss()
 
-                // Afficher un message ou effectuer d'autres actions si nécessaire
-                Snackbar.make(dialogView, "Table mise à jour!", Snackbar.LENGTH_SHORT).show()
+                // Show a message or perform other actions if needed
+                Snackbar.make(dialogView, "Table updated!", Snackbar.LENGTH_SHORT).show()
             } else {
-                // Afficher un message d'erreur si les nouvelles informations ne sont pas valides
-                Snackbar.make(dialogView, "Veuillez fournir des informations valides", Snackbar.LENGTH_SHORT).show()
+                // Show an error message if the new information is not valid
+                Snackbar.make(dialogView, "Please provide valid information", Snackbar.LENGTH_SHORT).show()
             }
         }
 
-        // Afficher la boîte de dialogue
+        // Show the dialog
         alertDialog.show()
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onTableSwipedLeft(table: TableModel) {
-        // Mettre à jour l'attribut occupied de la table
+        // Update the occupied attribute of the table
         val updatedTable = TableModel(
             key = table.key,
             numero = table.numero,
             capacity = table.capacity,
             occupied = !table.occupied
         )
-        // Mettre à jour la table dans la base de données
+        // Update the table in the database
         tableRepository.updateTable(updatedTable)
 
-        // Actualiser l'adaptateur pour refléter les changements
+        // Refresh the adapter to reflect the changes
         tableAdapter.notifyDataSetChanged()
     }
 

@@ -1,3 +1,5 @@
+package com.example.orderup.adaptater
+
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -5,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.example.orderup.R
-import com.example.orderup.model.MenuItem
+import com.example.orderup.model.MenuItemModel
 
-class ProduitsAdapter(private var produitsList: List<Pair<MenuItem, Int>>) : RecyclerView.Adapter<ProduitsAdapter.ViewHolder>() {
+class ProduitsAdapter(private var produitsList: List<Pair<MenuItemModel, Int>>) : RecyclerView.Adapter<ProduitsAdapter.ViewHolder>() {
 
+    // ViewHolder for each item in the RecyclerView
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textViewProduit: TextView = itemView.findViewById(R.id.textViewProduct)
         val buttonMinus: Button = itemView.findViewById(R.id.buttonMinus)
@@ -17,6 +20,7 @@ class ProduitsAdapter(private var produitsList: List<Pair<MenuItem, Int>>) : Rec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        // Inflate the layout for each item in the RecyclerView
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
         return ViewHolder(view)
     }
@@ -26,15 +30,17 @@ class ProduitsAdapter(private var produitsList: List<Pair<MenuItem, Int>>) : Rec
         holder.textViewProduit.text = produit.name
         holder.textViewQuantity.text = quantity.toString()
 
+        // Increase quantity when plus button is clicked
         holder.buttonPlus.setOnClickListener {
             val updatedQuantity = quantity + 1
             holder.textViewQuantity.text = updatedQuantity.toString()
             val updatedList = produitsList.toMutableList()
             updatedList[position] = Pair(produit, updatedQuantity)
             produitsList = updatedList.toList()
-            notifyItemChanged(position) // Pour mettre à jour l'affichage de l'élément modifié
+            notifyItemChanged(position) // To update the display of the modified item
         }
 
+        // Decrease quantity when minus button is clicked
         holder.buttonMinus.setOnClickListener {
             if (quantity > 0) {
                 val updatedQuantity = quantity - 1
@@ -42,12 +48,13 @@ class ProduitsAdapter(private var produitsList: List<Pair<MenuItem, Int>>) : Rec
                 val updatedList = produitsList.toMutableList()
                 updatedList[position] = Pair(produit, updatedQuantity)
                 produitsList = updatedList.toList()
-                notifyItemChanged(position) // Pour mettre à jour l'affichage de l'élément modifié
+                notifyItemChanged(position) // To update the display of the modified item
             }
         }
     }
 
-    fun getCurrentQuantities(): List<Pair<MenuItem, Int>> {
+    // Method to get the current list of product quantities
+    fun getCurrentQuantities(): List<Pair<MenuItemModel, Int>> {
         return produitsList
     }
 

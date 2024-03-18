@@ -8,11 +8,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
-import com.example.orderup.databinding.PrisecommandeBinding
+import com.example.orderup.databinding.OrdertakingBinding
 
-class Prisecommande : Fragment() {
+/**
+ * A [Fragment] subclass for handling order taking.
+ */
+class OrderTaking : Fragment() {
 
-    private var _binding: PrisecommandeBinding? = null
+    private var _binding: OrdertakingBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var tableId: String
@@ -22,12 +25,15 @@ class Prisecommande : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = PrisecommandeBinding.inflate(inflater, container, false)
+        _binding = OrdertakingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    /**
+     * Navigate to the specified destination fragment.
+     * @param destinationId The ID of the destination fragment.
+     */
     private fun navigateToDestination(destinationId: Int) {
-
         findNavController().navigate(destinationId, bundleOf("tableId" to tableId))
     }
 
@@ -40,8 +46,10 @@ class Prisecommande : Fragment() {
             val formattedText = getString(R.string.table_number, tableNumber)
             binding.textvu.text = formattedText
         } ?: run {
-            throw NullPointerException("Numéro de table manquant dans les arguments")
+            throw NullPointerException("Table number missing in arguments")
         }
+
+        // Set click listeners for menu categories
         binding.boissons.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_boissons) }
         binding.plats.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_plats) }
         binding.entrees.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_entrees) }

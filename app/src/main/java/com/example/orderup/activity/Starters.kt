@@ -8,16 +8,16 @@ import com.example.orderup.R
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Entrees : Products() {
+class Starters : Products() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // par exemple, modifier le titre de la page
+        // For example, modify the page title
         setPageTitle("Entrées")
 
-        // Modifier l'image si nécessaire
-        setImageResource(R.drawable.entree)
+        // Change the image if necessary
+        setImageResource(R.drawable.starter)
 
-        // Mettre à jour les produits spécifiques aux desserts
+        // Update products specific to entrees
         setRepositoryParameter("entrees")
 
         super.onViewCreated(view, savedInstanceState)

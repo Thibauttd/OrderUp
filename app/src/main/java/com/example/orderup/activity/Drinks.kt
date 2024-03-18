@@ -1,25 +1,23 @@
 package com.example.orderup.activity
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import com.example.orderup.R
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Boissons : Products() {
-
+class Drinks : Products() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // par exemple, modifier le titre de la page
+        // The page title
         setPageTitle("Boissons")
 
-        // Modifier l'image si nécessaire
-        setImageResource(R.drawable.boissons)
+        // The image if needed
+        setImageResource(R.drawable.drink)
 
-        // Mettre à jour les produits spécifiques aux desserts
+        // Update specific drinks products
         setRepositoryParameter("boissons")
-
         super.onViewCreated(view, savedInstanceState)
     }
 }

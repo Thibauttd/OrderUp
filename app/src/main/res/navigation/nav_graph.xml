@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/formules"
-        android:name="com.example.orderup.activity.Formules"
+        android:name="com.example.orderup.activity.Formulas"
         android:label="Formules"
-        tools:layout="@layout/formules">
+        tools:layout="@layout/formulas">
 
         <action
             android:id="@+id/action_Formule_to_Carte"
@@ -18,9 +18,9 @@
 
     <fragment
         android:id="@+id/carte"
-        android:name="com.example.orderup.activity.Carte"
+        android:name="com.example.orderup.activity.Menu"
         android:label="Carte"
-        tools:layout="@layout/carte">
+        tools:layout="@layout/menu">
 
         <action
             android:id="@+id/action_Carte_to_Role"
@@ -64,16 +64,16 @@
 
     <fragment
         android:id="@+id/gerant"
-        android:name="com.example.orderup.activity.Gerant"
+        android:name="com.example.orderup.activity.Manager"
         android:label="Gerant"
-        tools:layout="@layout/gerant">
+        tools:layout="@layout/manager">
     </fragment>
 
     <fragment
         android:id="@+id/serveur"
-        android:name="com.example.orderup.activity.Serveur"
+        android:name="com.example.orderup.activity.Waiter"
         android:label="Serveur"
-        tools:layout="@layout/serveur">
+        tools:layout="@layout/waiter">
 
         <action
             android:id="@+id/action_Serveur_to_Tables"
@@ -93,9 +93,9 @@
 
     <fragment
         android:id="@+id/prisecommande"
-        android:name="com.example.orderup.activity.Prisecommande"
+        android:name="com.example.orderup.activity.OrderTaking"
         android:label="Prise de commandes"
-        tools:layout="@layout/prisecommande">
+        tools:layout="@layout/ordertaking">
 
         <action
             android:id="@+id/action_PriseCom_to_entrees"
@@ -116,16 +116,16 @@
 
     <fragment
         android:id="@+id/entrees"
-        android:name="com.example.orderup.activity.Entrees"
+        android:name="com.example.orderup.activity.Starters"
         android:label="Entrees"
-        tools:layout="@layout/entrees">
+        tools:layout="@layout/starter">
     </fragment>
 
     <fragment
         android:id="@+id/plats"
         android:name="com.example.orderup.activity.Plats"
         android:label="Plats"
-        tools:layout="@layout/plats">
+        tools:layout="@layout/dish">
     </fragment>
 
     <fragment
@@ -137,9 +137,9 @@
 
     <fragment
         android:id="@+id/boissons"
-        android:name="com.example.orderup.activity.Boissons"
+        android:name="com.example.orderup.activity.Drinks"
         android:label="Boissons"
-        tools:layout="@layout/boissons">
+        tools:layout="@layout/drink">
     </fragment>
 
 </navigation>
