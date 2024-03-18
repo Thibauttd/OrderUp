@@ -34,11 +34,11 @@ class Role : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnPrecedent.setOnClickListener {
-            findNavController().navigate(R.id.action_Role_to_Formules)
+            findNavController().navigate(R.id.action_Role_to_Formulas)
         }
 
         binding.iconeGerant.setOnClickListener {
-            findNavController().navigate(R.id.action_Role_to_Gerant)
+            findNavController().navigate(R.id.action_Role_to_Manager)
         }
 
         binding.iconeCuisinier.setOnClickListener {
@@ -46,7 +46,7 @@ class Role : Fragment() {
         }
 
         binding.iconeServeur.setOnClickListener {
-            findNavController().navigate(R.id.action_Role_to_Serveur)
+            findNavController().navigate(R.id.action_Role_to_Waiter)
         }
 
     }

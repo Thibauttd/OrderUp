@@ -206,7 +206,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
 
     override fun onTableSwipedRight(table: TableModel) {
         findNavController().navigate(
-            R.id.action_Tables_to_PrisesCommande,
+            R.id.action_Tables_to_Ordertaking,
             bundleOf("num_table" to table.numero, "tableId" to table.key)
         )
     }

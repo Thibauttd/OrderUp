@@ -50,9 +50,9 @@ class OrderTaking : Fragment() {
         }
 
         // Set click listeners for menu categories
-        binding.boissons.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_boissons) }
-        binding.plats.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_plats) }
-        binding.entrees.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_entrees) }
+        binding.boissons.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_dish) }
+        binding.plats.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_dish) }
+        binding.entrees.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_starters) }
         binding.desserts.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_desserts) }
         binding.valid.setOnClickListener { navigateToDestination(R.id.action_PriseCom_to_tables) }
     }

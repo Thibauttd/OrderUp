@@ -36,7 +36,7 @@ class Waiter : Fragment() {
 
         // Navigate to the tables screen
         binding.table.setOnClickListener {
-            findNavController().navigate(R.id.action_Serveur_to_Tables)
+            findNavController().navigate(R.id.action_Waiter_to_Tables)
         }
     }
 

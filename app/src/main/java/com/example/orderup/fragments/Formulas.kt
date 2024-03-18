@@ -34,7 +34,7 @@ class Formulas : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSuivant.setOnClickListener {
-            findNavController().navigate(R.id.action_Formule_to_Carte)
+            findNavController().navigate(R.id.action_Formulas_to_Menu)
         }
     }
 

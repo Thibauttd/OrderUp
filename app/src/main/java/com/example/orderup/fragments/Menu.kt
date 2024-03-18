@@ -71,11 +71,11 @@ class Menu : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnSuivant.setOnClickListener {
-            findNavController().navigate(R.id.action_Carte_to_Role)
+            findNavController().navigate(R.id.action_Menu_to_Role)
         }
 
         binding.btnPrecedent.setOnClickListener {
-            findNavController().navigate(R.id.action_Carte_to_Formules)
+            findNavController().navigate(R.id.action_Menu_to_Formulas)
         }
 
         cameraPermission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)

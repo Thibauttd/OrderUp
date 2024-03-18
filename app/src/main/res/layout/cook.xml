@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Cook">
+    tools:context=".fragments.Cook">
 
     <ImageView
         android:id="@+id/imageView"
@@ -32,7 +32,7 @@
         android:layout_marginEnd="29dp"
         android:layout_marginBottom="802dp"
         android:contentDescription="@string/chef_image_description"
-        android:src="@drawable/chef" />
+        android:src="@drawable/cook" />
 
     <TextView
         android:id="@+id/textView4"
@@ -69,19 +69,19 @@
         android:layout_marginEnd="37dp"
         android:backgroundTint="@color/white"
         android:contentDescription="@string/filtre_button_description"
-        android:src="@drawable/filtre" />
+        android:src="@drawable/filter" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="392dp"
+        android:layout_height="635dp"
         android:layout_below="@id/imageButton3"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="47dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="505dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="50dp"
         android:background="@android:color/white" />
 
 </RelativeLayout>

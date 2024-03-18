@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Cook">
+    tools:context=".fragments.Cook">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:id="@+id/boissons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_prise_commande"
+            android:background="@drawable/border_ordertaking"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -88,7 +88,7 @@
                 android:layout_width="54dp"
                 android:layout_height="64dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/boissons"
+                android:src="@drawable/drink"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
