@@ -65,4 +65,3 @@ class CookAdapter(private val onOrderClickListener: ((OrderModel) -> Unit)? = nu
 
 
 
-
