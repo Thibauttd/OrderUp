@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Menu_starters">
+    tools:context=".fragments.Starters">
 
     <ImageView
         android:id="@+id/imageView"
@@ -13,26 +13,20 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="315dp"
-        android:layout_marginBottom="658dp"
-        android:contentDescription="@string/logo_description"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="341dp"
+        android:contentDescription="Starter"
         android:src="@drawable/starter" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="158dp"
+        android:layout_width="255dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginBottom="655dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="57dp"
         android:text="Mes entrées"
         android:textSize="30sp"
         android:textStyle="bold" />
