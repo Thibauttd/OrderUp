@@ -16,6 +16,23 @@ class ItemAdderRepository {
         }
     }
 
+    fun addListToItem(itemNames: List<String>) {
+        itemNames.forEach { itemName ->
+            // Générer automatiquement un ID unique pour le nouvel élément
+            val newItemRef = database.push()
+
+            // Récupérer l'ID généré
+            val newItemKey = newItemRef.key
+
+            // Si l'ID est généré avec succès, créer un ItemAdderModel avec cet ID et le nom de l'élément, puis l'ajouter à la base de données
+            newItemKey?.let {
+                val newItem = ItemAdderModel(name = itemName, id = it)
+                newItemRef.setValue(newItem)
+            }
+        }
+    }
+
+
     // Fonction pour récupérer un élément par son ID
     fun getItem(itemId: String, callback: (ItemAdderModel?) -> Unit) {
         database.child(itemId).addListenerForSingleValueEvent(object : ValueEventListener {

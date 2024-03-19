@@ -58,9 +58,7 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
         // Get all tables and display
         tableRepository.getAllTables(object : TableRepository.TablesListener {
             override fun onTablesReceived(tables: List<TableModel>) {
-                requireActivity().runOnUiThread {
                     tableAdapter.updateData(tables)
-                }
             }
 
             override fun onTablesError(error: String) {
