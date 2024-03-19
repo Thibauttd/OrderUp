@@ -47,9 +47,7 @@ class Cook : Fragment() {
         orderRepository.getCookableOrders { orders ->
             allOrders.addAll(orders)
             // Make sure to submit the list to the adapter on the main thread
-            requireActivity().runOnUiThread {
                 adapter.submitList(allOrders)
-            }
         }
     }
 

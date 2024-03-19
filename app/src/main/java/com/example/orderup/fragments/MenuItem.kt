@@ -141,8 +141,12 @@ open class MenuItem : Fragment(), MenuItemAdapter.MenuItemClickListener {
 
             if (newName.isNotEmpty() && newPrice.isNotEmpty()) {
                 // Modifier l'élément avec les nouvelles valeurs
-                val newItem = item.copy(name = newName, price = newPrice.toInt())
-                menuItemRepository.updateItem(item.id, newItem)
+                val updatedItem = item.copy(name = newName, price = newPrice.toInt())
+                val itemIndex = produitsList.indexOf(item)
+                if (itemIndex != -1) {
+                    produitsList[itemIndex] = updatedItem // Update item in the list
+                    recyclerView.adapter?.notifyItemChanged(itemIndex) // Notify adapter about the change
+                }
             }
 
             dialog.dismiss()
