@@ -3,18 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host_fragment"
-    app:startDestination="@id/formulas">
-
-    <fragment
-        android:id="@+id/formulas"
-        android:name="com.example.orderup.fragments.Formulas"
-        android:label="Formules"
-        tools:layout="@layout/formulas">
-
-        <action
-            android:id="@+id/action_Formulas_to_Menu"
-            app:destination="@id/menu" />
-    </fragment>
+    app:startDestination="@id/menu">
 
     <fragment
         android:id="@+id/menu"
@@ -25,10 +14,6 @@
         <action
             android:id="@+id/action_Menu_to_Role"
             app:destination="@id/role" />
-        <action
-            android:id="@+id/action_Menu_to_Formulas"
-            app:destination="@id/formulas" />
-
         <action
             android:id="@+id/action_Menu_to_Dessert"
             app:destination="@id/menu_dessert" />
@@ -47,28 +32,28 @@
         android:id="@+id/menu_dessert"
         android:name="com.example.orderup.fragments.Menu_desserts"
         android:label="Menu dessert"
-        tools:layout="@layout/menu_dessert">
+        tools:layout="@layout/menu_item">
     </fragment>
 
     <fragment
         android:id="@+id/menu_dish"
         android:name="com.example.orderup.fragments.Menu_dishs"
         android:label="Menu dish"
-        tools:layout="@layout/menu_dish">
+        tools:layout="@layout/menu_item">
     </fragment>
 
     <fragment
         android:id="@+id/menu_drink"
         android:name="com.example.orderup.fragments.Menu_drinks"
         android:label="Menu drink"
-        tools:layout="@layout/menu_drink">
+        tools:layout="@layout/menu_item">
     </fragment>
 
     <fragment
         android:id="@+id/menu_starter"
         android:name="com.example.orderup.fragments.Menu_starters"
         android:label="Menu starter"
-        tools:layout="@layout/menu_starter">
+        tools:layout="@layout/menu_item">
     </fragment>
 
     <fragment

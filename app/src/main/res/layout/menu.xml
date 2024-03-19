@@ -194,20 +194,6 @@
             app:layout_constraintStart_toStartOf="@+id/guidelineV"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_precedent"
-            style="@style/Widget.Material3.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#B67332"
-            android:backgroundTintMode="add"
-            android:text="PRECEDENT"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineV"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guidelineH2"
-            app:layout_constraintVertical_bias="0.94" />
-
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
@@ -261,8 +247,9 @@
 
         <TextView
             android:id="@+id/verif_info"
-            android:layout_width="181dp"
-            android:layout_height="26dp"
+            android:layout_width="217dp"
+            android:layout_height="24dp"
+            android:gravity="center"
             android:text="Vérifie les informations"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/guidelineH2"

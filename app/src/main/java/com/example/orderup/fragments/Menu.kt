@@ -64,10 +64,6 @@ class Menu : Fragment() {
             findNavController().navigate(R.id.action_Menu_to_Role)
         }
 
-        binding.btnPrecedent.setOnClickListener {
-            findNavController().navigate(R.id.action_Menu_to_Formulas)
-        }
-
         binding.desserts.setOnClickListener {
             findNavController().navigate(R.id.action_Menu_to_Dessert)
         }
