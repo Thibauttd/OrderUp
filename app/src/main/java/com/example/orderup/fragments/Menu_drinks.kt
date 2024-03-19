@@ -12,30 +12,19 @@ import com.example.orderup.databinding.MenuDrinkBinding
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Menu_drinks : Fragment() {
-
-    private var _binding: MenuDrinkBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = MenuDrinkBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
+class Menu_drinks :  MenuItem() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // For example, modify the page title
+        updatePageTitle("Boissons")
+
+        // Change the image if necessary
+        updateImageResId(R.drawable.drink)
+
+        // Update products specific to desserts
+        updateRepositoryParam("boissons")
+
         super.onViewCreated(view, savedInstanceState)
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
+
