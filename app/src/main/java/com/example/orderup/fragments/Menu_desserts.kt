@@ -12,30 +12,18 @@ import com.example.orderup.databinding.MenuDessertBinding
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Menu_desserts : Fragment() {
-
-    private var _binding: MenuDessertBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = MenuDessertBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
+class Menu_desserts : MenuItem() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
+        // For example, modify the page title
+        updatePageTitle("Desserts")
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        // Change the image if necessary
+        updateImageResId(R.drawable.dessert)
+
+        // Update products specific to desserts
+        updateRepositoryParam("desserts")
+
+        super.onViewCreated(view, savedInstanceState)
     }
 }
