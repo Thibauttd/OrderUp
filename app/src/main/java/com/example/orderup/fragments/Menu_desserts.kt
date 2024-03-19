@@ -15,7 +15,7 @@ import com.example.orderup.databinding.MenuDessertBinding
 class Menu_desserts : MenuItem() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // For example, modify the page title
+        // Modify the page title
         updatePageTitle("Desserts")
 
         // Change the image if necessary
