@@ -1,3 +1,4 @@
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,7 @@ class MenuItemAdapter(
     override fun onBindViewHolder(holder: MenuItemViewHolder, position: Int) {
         val currentItem = items[position]
         holder.itemName.text = currentItem.name
-        holder.itemPrice.text = currentItem.price.toString() // Assumption: price is stored as Int
+        holder.itemPrice.text = currentItem.price.toString()+"€" // Assumption: price is stored as Int
     }
 
     override fun getItemCount() = items.size
