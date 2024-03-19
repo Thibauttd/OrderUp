@@ -32,10 +32,9 @@
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.607"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.819">
+            app:layout_constraintTop_toTopOf="@+id/guidelineH2"
+            app:layout_constraintVertical_bias="0.27">
 
             <TextView
                 android:id="@+id/dessert"
@@ -74,10 +73,9 @@
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.616"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.679">
+            app:layout_constraintTop_toTopOf="@+id/guidelineH"
+            app:layout_constraintVertical_bias="0.47">
 
             <TextView
                 android:id="@+id/plat"
@@ -112,12 +110,11 @@
             android:layout_height="71dp"
             android:background="@drawable/border_ordertaking"
             android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.57"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.547">
+            app:layout_constraintTop_toTopOf="@+id/guidelineH"
+            app:layout_constraintVertical_bias="0.73">
 
             <TextView
                 android:id="@+id/entree"
@@ -152,12 +149,11 @@
             android:layout_height="71dp"
             android:background="@drawable/border_ordertaking"
             android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.532"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.422">
+            app:layout_constraintTop_toTopOf="@+id/guidelineH"
+            app:layout_constraintVertical_bias="0.216">
 
             <TextView
                 android:id="@+id/boisson"
@@ -187,33 +183,30 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/recognizedTextBtn"
+            style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reconnaître le texte"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.712"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.16"
-            style="@style/Widget.Material3.Button"
             android:backgroundTint="#B67332"
-            android:backgroundTintMode="add"/>
+            android:backgroundTintMode="add"
+            android:text="Reconnaître le texte"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineV"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_precedent"
+            style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#B67332"
+            android:backgroundTintMode="add"
             android:text="PRECEDENT"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98"
-            style="@style/Widget.Material3.Button"
-            android:backgroundTint="#B67332"
-            android:backgroundTintMode="add"/>
+            app:layout_constraintTop_toTopOf="@+id/guidelineH2"
+            app:layout_constraintVertical_bias="0.94" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -222,37 +215,36 @@
             android:layout_height="25dp"
             android:progress="50"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.97" />
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
+            app:layout_constraintStart_toStartOf="@+id/guidelineV"
+            app:layout_constraintTop_toTopOf="@+id/guidelineH2"
+            app:layout_constraintVertical_bias="0.9" />
 
         <Button
             android:id="@+id/btn_suivant"
+            style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#B67332"
+            android:backgroundTintMode="add"
             android:text="SUIVANT"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.98"
-            style="@style/Widget.Material3.Button"
-            android:backgroundTint="#B67332"
-            android:backgroundTintMode="add"/>
+            app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+            app:layout_constraintTop_toTopOf="@+id/guidelineH2"
+            app:layout_constraintVertical_bias="0.94" />
 
         <ImageView
             android:id="@+id/logo"
             android:layout_width="66dp"
             android:layout_height="63dp"
             android:src="@drawable/logo"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.652"
+            app:layout_constraintStart_toStartOf="@+id/guidelineV2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.072" />
 
         <TextView
             android:id="@+id/carte"
@@ -261,11 +253,11 @@
             android:text="La carte"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
+            app:layout_constraintStart_toStartOf="@+id/guidelineV"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.05" />
+            app:layout_constraintVertical_bias="0.123" />
 
         <TextView
             android:id="@+id/verif_info"
@@ -273,12 +265,11 @@
             android:layout_height="26dp"
             android:text="Vérifie les informations"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35" />
+            app:layout_constraintTop_toTopOf="@+id/guidelineH"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/scanner"
@@ -286,39 +277,54 @@
             android:layout_height="wrap_content"
             android:text="Scanner une photo de la carte"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.45"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.113" />
+            app:layout_constraintVertical_bias="0.351" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/inputImageBtn"
+            style="@style/Widget.Material3.Button"
             android:layout_width="65dp"
             android:layout_height="47dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:icon="@drawable/camera"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.192"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.144"
-            style="@style/Widget.Material3.Button"
             android:backgroundTint="#B67332"
-            android:backgroundTintMode="add"/>
+            android:backgroundTintMode="add"
+            app:icon="@drawable/camera"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineH"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineH2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <!-- TextView en dessous de la prise de commande -->
-
-    <!-- Ajoutez les autres ConstraintLayouts ici -->
-
-
-
-    </RelativeLayout>
+</RelativeLayout>
