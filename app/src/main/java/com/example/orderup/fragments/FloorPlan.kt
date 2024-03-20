@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.orderup.R
 import com.example.orderup.model.TableModel
@@ -19,11 +20,17 @@ class FloorPlan : Fragment() {
     private lateinit var tableSpinner: Spinner
     private lateinit var addTableButton: Button
 
+    private var isViewCreated: Boolean = false
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.floor_plan, container, false)
+        val view = inflater.inflate(R.layout.floor_plan, container, false)
+        // Initialiser votre vue ici
+        isViewCreated = true
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,9 +45,17 @@ class FloorPlan : Fragment() {
         }
         val resetButton: Button = view.findViewById(R.id.resetButton)
         resetButton.setOnClickListener {
-            // Appeler la fonction pour réinitialiser les tables
-            floorPlanView.deleteTheTables()
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirmation") // Titre de la pop-up
+                .setMessage("Êtes-vous sûr de vouloir réinitialiser le plan ?") // Le message affiché
+                .setPositiveButton("Oui") { dialog, which ->
+                    // Code à exécuter si l'utilisateur confirme
+                    floorPlanView.deleteTheTables()
+                }
+                .setNegativeButton("Non", null) // Si l'utilisateur annule, rien ne se passe
+                .show() // Affiche l'AlertDialog
         }
+
     }
 
     private fun initTablesList() {
@@ -51,10 +66,13 @@ class FloorPlan : Fragment() {
                 tablesList.clear() // Clear existing tables
                 tablesList.addAll(tables) // Add tables from repository
                 // Configurer la vue FloorPlanView
-                setupFloorPlanView()
+                if (isViewCreated) {
+                    // Configurer la vue FloorPlanView
+                    setupFloorPlanView()
 
-                // Configurer le Spinner et le bouton
-                setupSpinnerAndButton()
+                    // Configurer le Spinner et le bouton
+                    setupSpinnerAndButton()
+                }
             }
 
             override fun onTablesError(error: String) {
@@ -150,6 +168,12 @@ class FloorPlan : Fragment() {
                 floorPlanView.addTable(selectedTable)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        // Nettoyer les ressources ou arrêter les opérations associées à la vue ici
+        isViewCreated = false
+        super.onDestroyView()
     }
 
 }

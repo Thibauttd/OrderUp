@@ -44,7 +44,7 @@ class FloorPlanView : View {
         // Dessinez chaque table dans la liste
         for (table in tablesList) {
             // Determinez la couleur de trait en fonction de la disponibilité de la table
-            val tableStrokeColor = if (table.tableModel.occupied) Color.GREEN else Color.RED
+            val tableStrokeColor = if (table.tableModel.occupied) Color.RED else Color.GREEN
             tablePaint.color = tableStrokeColor
 
             // Dessinez le contour de la table
@@ -54,20 +54,25 @@ class FloorPlanView : View {
             canvas.drawRect(table.x, table.y, table.x + table.width, table.y + table.height, tablePaint)
 
             // Affichez le numéro de la table et la capacité sur deux lignes séparées à l'intérieur du rectangle de la table
-            val textPaint = Paint().apply {
+            val textPaint1 = Paint().apply {
                 color = Color.BLACK
-                textSize = table.height / 6 // Taille de la police en fonction de la hauteur de la table
+                textSize = table.height / 3 // Taille de la police en fonction de la hauteur de la table
                 textAlign = Paint.Align.CENTER // Centrer le texte horizontalement
             }
-            val tableNumberText = "Table n°${table.tableModel.numero}"
-            val capacityText = "Couverts: ${table.tableModel.capacity}"
+            val textPaint2 = Paint().apply {
+                color = Color.BLACK
+                textSize = table.height / 3 // Taille de la police en fonction de la hauteur de la table
+                textAlign = Paint.Align.CENTER // Centrer le texte horizontalement
+            }
+            val tableNumberText = "N°${table.tableModel.numero}"
+            val capacityText =  "${table.tableModel.capacity}\uD83C\uDF74"
 
             // Centrez le texte verticalement à l'intérieur du rectangle de la table
             val textX = table.x + table.width / 2 // Centrer le texte horizontalement
             val textY1 = table.y + table.height / 3 // Positionner la première ligne de texte
             val textY2 = table.y + table.height * 2 / 3 // Positionner la deuxième ligne de texte
-            canvas.drawText(tableNumberText, textX, textY1, textPaint) // Dessiner le numéro de table
-            canvas.drawText(capacityText, textX, textY2, textPaint) // Dessiner la capacité
+            canvas.drawText(tableNumberText, textX, textY1, textPaint1) // Dessiner le numéro de table
+            canvas.drawText(capacityText, textX, textY2, textPaint2) // Dessiner la capacité
         }
     }
 
