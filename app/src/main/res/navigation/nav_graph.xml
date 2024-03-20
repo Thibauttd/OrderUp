@@ -5,6 +5,7 @@
     android:id="@+id/nav_host_fragment"
     app:startDestination="@id/menu">
 
+
     <fragment
         android:id="@+id/menu"
         android:name="com.example.orderup.fragments.Menu"
@@ -103,6 +104,11 @@
         <action
             android:id="@+id/action_Waiter_to_Tables"
             app:destination="@id/tables" />
+
+        <action
+            android:id="@+id/action_Waiter_to_Floor_Plan"
+            app:destination="@id/floorplan" />
+
     </fragment>
 
     <fragment
@@ -165,6 +171,13 @@
         android:name="com.example.orderup.fragments.Drinks"
         android:label="Drinks"
         tools:layout="@layout/drink">
+    </fragment>
+
+    <fragment
+        android:id="@+id/floorplan"
+        android:name="com.example.orderup.fragments.FloorPlan"
+        android:label="Toto"
+        tools:layout="@layout/floor_plan">
     </fragment>
 
 </navigation>

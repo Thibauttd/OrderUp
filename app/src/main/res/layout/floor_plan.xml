@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Titre -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Plan du restaurant"
+        android:textSize="20sp" />
+
+    <!-- Texte "Sélectionner une table" -->
+    <TextView
+        android:id="@+id/selectTableTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_marginStart="16dp"
+        android:text="Sélectionner une table"
+        android:textSize="16sp" />
+
+    <!-- Spinner pour la sélection de table -->
+
+    <!-- Boutons -->
+
+    <Spinner
+        android:id="@+id/tableSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="-1dp"
+        android:layout_toEndOf="@id/selectTableTextView" />
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableSpinner"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <!-- Bouton Ajouter Table -->
+        <Button
+            android:id="@+id/addTableButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajouter Table"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Bouton Sauvegarder -->
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sauvegarder"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Bouton Réinitialiser -->
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset" />
+
+    </LinearLayout>
+
+    <!-- Vue du plan du restaurant -->
+    <com.example.orderup.view.FloorPlanView
+        android:id="@+id/floorPlanView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/buttonsLayout"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/white"
+        android:clipToPadding="false"
+        android:padding="8dp" />
+
+</RelativeLayout>

@@ -25,6 +25,7 @@ class TableRepository {
         databaseRef.child(table.key).setValue(table)
     }
 
+
     // Get all tables from the database
     fun getAllTables(listener: TablesListener) {
         // Add a listener for changes in the database
