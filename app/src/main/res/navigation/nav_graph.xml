@@ -166,6 +166,27 @@
     </fragment>
 
     <fragment
+        android:id="@+id/desserts"
+        android:name="com.example.orderup.fragments.Desserts"
+        android:label="Desserts"
+        tools:layout="@layout/products">
+    </fragment>
+
+    <fragment
+        android:id="@+id/starters"
+        android:name="com.example.orderup.fragments.Starters"
+        android:label="Starters"
+        tools:layout="@layout/products">
+    </fragment>
+
+    <fragment
+        android:id="@+id/dish"
+        android:name="com.example.orderup.fragments.Dish"
+        android:label="Dish"
+        tools:layout="@layout/products">
+    </fragment>
+
+    <fragment
         android:id="@+id/product"
         android:name="com.example.orderup.fragments.Products"
         android:label="Products"
