@@ -102,7 +102,7 @@ class TableAdapter(
             roundedRectangleDrawable.setStroke(3.dpToPx(context.resources), borderColor)
             frameLayout.background = roundedRectangleDrawable
 
-            // Update other UI elements
+            // Update UI elements
             textNumero.text = "Table n°${table.numero}"
             textCapacity.text = "Capacité: ${table.capacity}"
         }
