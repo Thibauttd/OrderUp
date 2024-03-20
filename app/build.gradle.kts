@@ -48,7 +48,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation("androidx.gridlayout:gridlayout:1.0.0")
-    implementation("androidx.activity:activity:1.8.0")
+    implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("com.google.firebase:firebase-database:20.3.1")
     implementation("com.google.firebase:firebase-database-ktx:20.3.1")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.0")

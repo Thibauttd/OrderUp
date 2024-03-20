@@ -22,6 +22,9 @@
         android:id="@+id/btnAddTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ajouter Table" />
+        android:text="Ajouter la table"
+        style="@style/Widget.Material3.Button"
+        android:backgroundTint="#B67332"
+        android:backgroundTintMode="add"/>
 
 </LinearLayout>

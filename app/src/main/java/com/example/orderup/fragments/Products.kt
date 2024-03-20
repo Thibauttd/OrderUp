@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orderup.R
 import com.example.orderup.adapter.ProduitsAdapter
@@ -66,6 +67,10 @@ open class Products : Fragment() {
         buttonValider.setOnClickListener {
             validerCommande()
             parentFragmentManager.popBackStack()
+        }
+
+        binding.btnLogo.setOnClickListener {
+            findNavController().navigate(R.id.action_Products_to_Menu)
         }
     }
 

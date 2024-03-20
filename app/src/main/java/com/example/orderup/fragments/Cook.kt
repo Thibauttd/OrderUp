@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.orderup.R
 import com.example.orderup.databinding.CookBinding
 import com.example.orderup.model.OrderModel
 import com.example.orderup.repository.OrderRepository
@@ -37,6 +39,14 @@ class Cook : Fragment() {
 
         // Initialize the RecyclerView with a LinearLayoutManager
         adapter = CookAdapter()
+
+        binding.btnLogo.setOnClickListener {
+            findNavController().navigate(R.id.action_Cook_to_Menu)
+        }
+
+        binding.btnCook.setOnClickListener {
+            findNavController().navigate(R.id.action_Cook_to_Role)
+        }
 
         // Make sure to set the adapter on the RecyclerView before calling getCookableOrders
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

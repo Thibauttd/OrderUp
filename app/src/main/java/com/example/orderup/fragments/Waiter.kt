@@ -38,6 +38,14 @@ class Waiter : Fragment() {
         binding.table.setOnClickListener {
             findNavController().navigate(R.id.action_Waiter_to_Tables)
         }
+
+        binding.btnLogo.setOnClickListener {
+            findNavController().navigate(R.id.action_Waiter_to_Menu)
+        }
+
+        binding.btnWaiter.setOnClickListener {
+            findNavController().navigate(R.id.action_Waiter_to_Role)
+        }
     }
 
     override fun onDestroyView() {

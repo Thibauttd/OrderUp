@@ -127,12 +127,12 @@
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/btn_logo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/btn_logo"
                 android:layout_width="53dp"
                 android:layout_height="54dp"
                 android:layout_marginEnd="8dp"
@@ -181,19 +181,6 @@
                 app:layout_constraintTop_toTopOf="@+id/boisson" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/recognizedTextBtn"
-            style="@style/Widget.Material3.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#B67332"
-            android:backgroundTintMode="add"
-            android:text="Reconnaître le texte"
-            app:layout_constraintBottom_toTopOf="@+id/guidelineH"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guidelineV"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
@@ -236,6 +223,7 @@
             android:id="@+id/carte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="La carte"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -279,10 +267,10 @@
             android:backgroundTintMode="add"
             app:icon="@drawable/camera"
             app:layout_constraintBottom_toTopOf="@+id/guidelineH"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineV"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
+            app:layout_constraintStart_toStartOf="@+id/guidelineV"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.516" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineV"

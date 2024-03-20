@@ -61,6 +61,13 @@
         android:name="com.example.orderup.fragments.Cook"
         android:label="Cook"
         tools:layout="@layout/cook">
+
+        <action
+            android:id="@+id/action_Cook_to_Menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_Cook_to_Role"
+            app:destination="@id/role" />
     </fragment>
 
     <fragment
@@ -103,6 +110,12 @@
         <action
             android:id="@+id/action_Waiter_to_Tables"
             app:destination="@id/tables" />
+        <action
+            android:id="@+id/action_Waiter_to_Menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_Waiter_to_Role"
+            app:destination="@id/role" />
     </fragment>
 
     <fragment
@@ -114,6 +127,13 @@
         <action
             android:id="@+id/action_Tables_to_Ordertaking"
             app:destination="@id/ordertaking" />
+
+        <action
+            android:id="@+id/action_Tables_to_Menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_Tables_to_Role"
+            app:destination="@id/role" />
     </fragment>
 
     <fragment
@@ -143,28 +163,41 @@
         android:id="@+id/starters"
         android:name="com.example.orderup.fragments.Starters"
         android:label="Starters"
-        tools:layout="@layout/starter">
+        tools:layout="@layout/products">
     </fragment>
 
     <fragment
         android:id="@+id/dish"
         android:name="com.example.orderup.fragments.Dish"
         android:label="Dish"
-        tools:layout="@layout/dish">
+        tools:layout="@layout/products">
     </fragment>
 
     <fragment
         android:id="@+id/desserts"
         android:name="com.example.orderup.fragments.Desserts"
         android:label="Desserts"
-        tools:layout="@layout/desserts">
+        tools:layout="@layout/products">
     </fragment>
 
     <fragment
         android:id="@+id/drinks"
         android:name="com.example.orderup.fragments.Drinks"
         android:label="Drinks"
-        tools:layout="@layout/drink">
+        tools:layout="@layout/products">
     </fragment>
+
+    <fragment
+        android:id="@+id/product"
+        android:name="com.example.orderup.fragments.Products"
+        android:label="Products"
+        tools:layout="@layout/products">
+
+        <action
+            android:id="@+id/action_Products_to_Menu"
+            app:destination="@id/menu" />
+    </fragment>
+
+
 
 </navigation>

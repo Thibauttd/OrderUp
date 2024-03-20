@@ -54,6 +54,13 @@ class TableRepository {
         return tablesList.any { it.occupied }
     }
 
+    // Delete a table from the database
+    fun deleteTable(table: TableModel) {
+        // Delete the table from the database using its key
+        databaseRef.child(table.key).removeValue()
+    }
+
+
     // Listener interface for table data
     interface TablesListener {
         fun onTablesReceived(tables: List<TableModel>)
