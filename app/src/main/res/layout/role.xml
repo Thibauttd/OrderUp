@@ -101,16 +101,17 @@
 
         <Button
             android:id="@+id/btn_precedent"
+            style="@style/Widget.Material3.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="PRECEDENT"
-            style="@style/Widget.Material3.Button"
             android:backgroundTint="#B67332"
             android:backgroundTintMode="add"
+            android:text="PRECEDENT"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineV"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
+            app:layout_constraintHorizontal_bias="0.15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guidelineH2"
             app:layout_constraintVertical_bias="0.94" />

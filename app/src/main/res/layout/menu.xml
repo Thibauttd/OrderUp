@@ -203,7 +203,8 @@
             android:text="SUIVANT"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guidelineV2"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintStart_toStartOf="@+id/guidelineV"
             app:layout_constraintTop_toTopOf="@+id/guidelineH2"
             app:layout_constraintVertical_bias="0.94" />
 
