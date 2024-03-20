@@ -66,7 +66,7 @@
 
     <fragment
         android:id="@+id/role"
-        android:name="com.example.orderup.activity.Role"
+        android:name="com.example.orderup.fragments.Role"
         android:label="Roles"
         tools:layout="@layout/role">
 
@@ -156,27 +156,6 @@
         <action
             android:id="@+id/action_PriseCom_to_drinks"
             app:destination="@id/drinks" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/starters"
-        android:name="com.example.orderup.fragments.Starters"
-        android:label="Starters"
-        tools:layout="@layout/starter">
-    </fragment>
-
-    <fragment
-        android:id="@+id/dish"
-        android:name="com.example.orderup.fragments.Dish"
-        android:label="Dish"
-        tools:layout="@layout/dish">
-    </fragment>
-
-    <fragment
-        android:id="@+id/desserts"
-        android:name="com.example.orderup.fragments.Desserts"
-        android:label="Desserts"
-        tools:layout="@layout/desserts">
     </fragment>
 
     <fragment
