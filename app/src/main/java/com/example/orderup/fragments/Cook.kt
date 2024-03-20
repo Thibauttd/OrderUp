@@ -1,6 +1,5 @@
 package com.example.orderup.fragments
 
-import CookAdapter
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -19,6 +18,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderup.R
+import com.example.orderup.adapter.CookAdapter
 import com.example.orderup.databinding.CookBinding
 import com.example.orderup.model.OrderModel
 import com.example.orderup.repository.MenuItemRepository
@@ -46,7 +46,7 @@ class Cook : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Création d'un canal de notification
+        // Create a notification channel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 "order_ready_channel",
@@ -56,7 +56,7 @@ class Cook : Fragment() {
                 description = "Channel for notifying about orders being ready."
             }
 
-            // Enregistrement du canal avec le NotificationManager
+            // Register the channel with the NotificationManager
             val notificationManager =
                 requireContext().getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(channel)

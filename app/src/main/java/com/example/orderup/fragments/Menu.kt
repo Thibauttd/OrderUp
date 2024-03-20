@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
 import com.example.orderup.databinding.MenuBinding
+import com.example.orderup.repository.ItemAdderRepository
 import com.google.android.material.button.MaterialButton
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
@@ -38,6 +39,12 @@ class Menu : Fragment() {
     private lateinit var inputImageBtn: MaterialButton
     private lateinit var progressDialog: ProgressDialog
     private lateinit var textRecognizer: TextRecognizer
+
+    private val boissonsList = mutableListOf<String>()
+    private val entreesList = mutableListOf<String>()
+    private val platsList = mutableListOf<String>()
+    private val dessertsList = mutableListOf<String>()
+    private val item_repo =  ItemAdderRepository()
 
     private companion object {
         private const val CAMERA_REQUEST_CODE = 100
@@ -83,10 +90,7 @@ class Menu : Fragment() {
 
         textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
 
-        recognizedTextEt = binding.recognizedTextEt
-
         inputImageBtn = binding.inputImageBtn
-        recognizedTextEt = binding.recognizedTextEt
 
         inputImageBtn.setOnClickListener {
             showImageSourceDialog()
@@ -104,7 +108,9 @@ class Menu : Fragment() {
                 .addOnSuccessListener { visionText: Text ->
                     progressDialog.dismiss()
                     val recognizedText: String = visionText.text
-                    recognizedTextEt.setText(recognizedText)
+
+                    // Extraire les éléments du menu
+                    filterAndCategorizeText(recognizedText)
                 }
                 .addOnFailureListener { e: Exception ->
                     progressDialog.dismiss()
@@ -114,6 +120,45 @@ class Menu : Fragment() {
             progressDialog.dismiss()
             showToast("Échec de la préparation de l'image : ${e.message}")
         }
+    }
+
+    private fun filterAndCategorizeText(text: String) {
+        val lines = text.split("\n")
+        var currentCategory: MutableList<String>? = null
+
+        for (line in lines) {
+            // Identify the current category
+            when {
+                line.contains("Boisson", ignoreCase = true) -> {
+                    currentCategory = boissonsList
+                }
+                line.contains("Entrée", ignoreCase = true) -> {
+                    currentCategory = entreesList
+                }
+                line.contains("Plat", ignoreCase = true) -> {
+                    currentCategory = platsList
+                }
+                line.contains("Dessert", ignoreCase = true) -> {
+                    currentCategory = dessertsList
+                }
+                // If the line doesn't contain a category, add the item to the current list
+                currentCategory != null -> {
+                    currentCategory.add(line)
+                }
+            }
+        }
+
+        println("Boissons: $boissonsList")
+        println("Entrées: $entreesList")
+        println("Plats: $platsList")
+        println("Desserts: $dessertsList")
+
+
+        item_repo.addListToItem(boissonsList)
+        item_repo.addListToItem(entreesList)
+        item_repo.addListToItem(platsList)
+        item_repo.addListToItem(dessertsList)
+
     }
 
     private fun pickImageGallery() {
@@ -146,7 +191,7 @@ class Menu : Fragment() {
                 imageUri = data?.data
                 recognizeTextFromImage()
             } else {
-                showToast("Annulé...!")
+                showToast("Annulé...")
             }
         }
 
@@ -230,3 +275,4 @@ class Menu : Fragment() {
         _binding = null
     }
 }
+

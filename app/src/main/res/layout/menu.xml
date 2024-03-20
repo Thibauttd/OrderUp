@@ -4,25 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Cook">
+    tools:context=".fragments.Menu">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <EditText
-            android:id="@+id/recognizedTextEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Texte reconnu"
-            android:inputType="textMultiLine"
-            android:minLines="3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.245" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/desserts"
@@ -255,9 +241,10 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/guidelineH"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.351" />
+            app:layout_constraintVertical_bias="0.555" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/inputImageBtn"
@@ -269,9 +256,10 @@
             app:icon="@drawable/camera"
             app:layout_constraintBottom_toTopOf="@+id/guidelineH"
             app:layout_constraintEnd_toStartOf="@+id/guidelineV2"
+            app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="@+id/guidelineV"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.516" />
+            app:layout_constraintVertical_bias="0.792" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineV"

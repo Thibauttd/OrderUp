@@ -8,17 +8,17 @@ import com.example.orderup.R
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class Menu_starters :  MenuItem() {
+class MenuDrinks :  MenuItem() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // For example, modify the page title
-        updatePageTitle("Entrées")
+        updatePageTitle("Boissons")
 
         // Change the image if necessary
-        updateImageResId(R.drawable.starter)
+        updateImageResId(R.drawable.drink)
 
         // Update products specific to desserts
-        updateRepositoryParam("entrees")
+        updateRepositoryParam("boissons")
 
         super.onViewCreated(view, savedInstanceState)
     }

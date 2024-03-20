@@ -1,6 +1,5 @@
 package com.example.orderup.fragments
 
-import MenuItemAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orderup.R
+import com.example.orderup.adapter.MenuItemAdapter
 import com.example.orderup.databinding.MenuItemBinding
 import com.example.orderup.model.MenuItemModel
 import com.example.orderup.repository.ItemAdderRepository

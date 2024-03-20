@@ -104,7 +104,7 @@ class TableAdapter(
 
             // Update other UI elements
             textNumero.text = "Table n°${table.numero}"
-            textCapacity.text = "Capacity: ${table.capacity}"
+            textCapacity.text = "Capacité: ${table.capacity}"
         }
     }
 

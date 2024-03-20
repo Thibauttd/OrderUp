@@ -31,28 +31,28 @@
 
     <fragment
         android:id="@+id/menu_dessert"
-        android:name="com.example.orderup.fragments.Menu_desserts"
+        android:name="com.example.orderup.fragments.MenuDesserts"
         android:label="Menu dessert"
         tools:layout="@layout/menu_item">
     </fragment>
 
     <fragment
         android:id="@+id/menu_dish"
-        android:name="com.example.orderup.fragments.Menu_dishs"
+        android:name="com.example.orderup.fragments.MenuDishs"
         android:label="Menu dish"
         tools:layout="@layout/menu_item">
     </fragment>
 
     <fragment
         android:id="@+id/menu_drink"
-        android:name="com.example.orderup.fragments.Menu_drinks"
+        android:name="com.example.orderup.fragments.MenuDrinks"
         android:label="Menu drink"
         tools:layout="@layout/menu_item">
     </fragment>
 
     <fragment
         android:id="@+id/menu_starter"
-        android:name="com.example.orderup.fragments.Menu_starters"
+        android:name="com.example.orderup.fragments.MenuStarters"
         android:label="Menu starter"
         tools:layout="@layout/menu_item">
     </fragment>

@@ -14,18 +14,20 @@
         android:textSize="20sp" />
 
     <!-- Texte "Sélectionner une table" -->
+
+    <!-- Spinner pour la sélection de table -->
+
+    <!-- Boutons -->
+
     <TextView
         android:id="@+id/selectTableTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleTextView"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
         android:text="Sélectionner une table"
         android:textSize="16sp" />
-
-    <!-- Spinner pour la sélection de table -->
-
-    <!-- Boutons -->
 
     <Spinner
         android:id="@+id/tableSpinner"
@@ -33,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/titleTextView"
         android:layout_marginStart="23dp"
-        android:layout_marginTop="-1dp"
+        android:layout_marginTop="12dp"
         android:layout_toEndOf="@id/selectTableTextView" />
 
     <LinearLayout
@@ -51,6 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ajouter Table"
+            style="@style/Widget.Material3.Button"
+            android:backgroundTint="#B67332"
+            android:backgroundTintMode="add"
             android:layout_marginEnd="8dp" />
 
         <!-- Bouton Sauvegarder -->
@@ -58,6 +63,9 @@
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.Material3.Button"
+            android:backgroundTint="#B67332"
+            android:backgroundTintMode="add"
             android:text="Sauvegarder"
             android:layout_marginEnd="8dp" />
 
@@ -66,6 +74,9 @@
             android:id="@+id/resetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.Material3.Button"
+            android:backgroundTint="#B67332"
+            android:backgroundTintMode="add"
             android:text="Reset" />
 
     </LinearLayout>

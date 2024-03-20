@@ -1,3 +1,5 @@
+package com.example.orderup.adapter
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -17,19 +19,23 @@ class CookAdapter(
     private var orders: List<OrderModel> = listOf()
     private var menuItemRepository: MenuItemRepository = MenuItemRepository("")
 
+    // Inflate the layout for each item of the RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemOrderBinding.inflate(inflater, parent, false)
         return OrderViewHolder(binding)
     }
 
+    // Bind data to each item of the RecyclerView
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val currentOrder = orders[position]
         holder.bind(currentOrder)
     }
 
+    // Return the size of the dataset
     override fun getItemCount() = orders.size
-    
+
+    // Update the list of orders
     fun submitList(newOrders: List<OrderModel>) {
         orders = newOrders
         notifyDataSetChanged()
@@ -39,6 +45,7 @@ class CookAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         init {
+            // Set click listener for each item in the RecyclerView
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -47,9 +54,11 @@ class CookAdapter(
             }
         }
 
+        // Bind data to the item view
         fun bind(order: OrderModel) {
             binding.order = order
 
+            // Fetch item name asynchronously and update UI
             CoroutineScope(Dispatchers.Main).launch {
                 val itemName = menuItemRepository.getItemName(order.menuitemid)
                 binding.textViewOrderQuantity.text = "Quantité: ${order.quantity}"
@@ -59,6 +68,7 @@ class CookAdapter(
         }
     }
 
+    // Attach swipe functionality to the RecyclerView
     fun attachSwipeHelper(recyclerView: RecyclerView) {
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             0,
