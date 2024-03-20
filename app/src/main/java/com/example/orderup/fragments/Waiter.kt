@@ -9,16 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
 import com.example.orderup.databinding.WaiterBinding
 
-/**
- * A simple [Fragment] subclass serving as the default destination in the navigation.
- * This fragment represents the role of a server in the application.
- */
 class Waiter : Fragment() {
 
     private var _binding: WaiterBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(

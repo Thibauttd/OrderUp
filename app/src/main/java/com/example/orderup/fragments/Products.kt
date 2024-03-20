@@ -9,7 +9,7 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orderup.R
-import com.example.orderup.adapter.ProduitsAdapter
+import com.example.orderup.adapter.ProductAdapter
 import com.example.orderup.databinding.ProductsBinding
 import com.example.orderup.model.MenuItemModel
 import com.example.orderup.model.OrderModel
@@ -60,7 +60,7 @@ open class Products : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         getProduitsListAndCounts { produitsList ->
-            recyclerView.adapter = ProduitsAdapter(produitsList)
+            recyclerView.adapter = ProductAdapter(produitsList)
         }
         val buttonValider = view.findViewById<Button>(R.id.buttonValider)
 
@@ -121,7 +121,7 @@ open class Products : Fragment() {
      */
     private fun validerCommande() {
         val recyclerView = binding.recyclerViewProduits
-        val adapter = recyclerView.adapter as? ProduitsAdapter
+        val adapter = recyclerView.adapter as? ProductAdapter
 
         adapter?.let { produitsAdapter ->
             produitsList = produitsAdapter.getCurrentQuantities()

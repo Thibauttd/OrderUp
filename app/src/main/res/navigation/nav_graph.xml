@@ -62,6 +62,14 @@
         android:name="com.example.orderup.fragments.Cook"
         android:label="Cook"
         tools:layout="@layout/cook">
+
+        <action
+            android:id="@+id/action_Cook_to_Menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_Cook_to_Role"
+            app:destination="@id/role" />
+
     </fragment>
 
     <fragment

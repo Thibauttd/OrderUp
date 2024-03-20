@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.example.orderup.R
 import com.example.orderup.model.MenuItemModel
 
-class ProduitsAdapter(private var produitsList: List<Pair<MenuItemModel, Int>>) : RecyclerView.Adapter<ProduitsAdapter.ViewHolder>() {
+class ProductAdapter(private var produitsList: List<Pair<MenuItemModel, Int>>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     // ViewHolder for each item in the RecyclerView
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

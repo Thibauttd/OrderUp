@@ -8,6 +8,10 @@
     <string name="previous">Previous</string>
     <string name="table_number">Table n° %1$s</string>
     <string name="order_details_format">ID: %1$s - Quantity: %2$d</string>
+    <string name="notification_channel_name">Order Notification Channel</string>
+    <string name="notification_channel_description">Channel for displaying order notifications</string>
+    <string name="notification_title">New Order</string>
+    <string name="notification_text">You have a new order to process</string>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
