@@ -12,6 +12,7 @@ class ItemAdderRepository {
         val newItemKey = database.push().key
         newItemKey?.let {
             // Ajout de l'élément à la base de données avec la clé générée
+            item.id = newItemKey
             database.child(it).setValue(item)
         }
     }
