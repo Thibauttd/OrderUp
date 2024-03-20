@@ -49,6 +49,14 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
         tableAdapter = TableAdapter(emptyList(), this, null)
         recyclerView.adapter = tableAdapter
 
+        binding.btnLogo.setOnClickListener {
+            findNavController().navigate(R.id.action_Tables_to_Menu)
+        }
+
+        binding.btnWaiter.setOnClickListener {
+            findNavController().navigate(R.id.action_Tables_to_Role)
+        }
+
         // Create ItemTouchHelper and attach it to RecyclerView
         val tableSwipeListener: TableItemTouchHelper.OnTableSwipeListener = this
         val tableItemTouchHelper = TableItemTouchHelper(tableAdapter, tableSwipeListener)
@@ -146,10 +154,19 @@ class Tables : Fragment(), TableAdapter.OnTableClickListener, TableItemTouchHelp
         val editTextNumber = dialogView.findViewById<EditText>(R.id.editTextNumber)
         val editTextCapacity = dialogView.findViewById<EditText>(R.id.editTextCapacity)
         val btnUpdateTable = dialogView.findViewById<Button>(R.id.btnUpdateTable)
+        val btnDeleteTable = dialogView.findViewById<Button>(R.id.btnDeleteTable)
 
         // Pre-fill fields with information from the selected table
         editTextNumber.setText(table.numero)
         editTextCapacity.setText(table.capacity.toString())
+
+
+        btnDeleteTable.setOnClickListener {
+            tableRepository.deleteTable(table)
+            alertDialog.dismiss()
+            Snackbar.make(requireView(), "Table supprimée !", Snackbar.LENGTH_SHORT).show()
+        }
+
 
         // Click handler for the "Update Table" button in the dialog
         btnUpdateTable.setOnClickListener {

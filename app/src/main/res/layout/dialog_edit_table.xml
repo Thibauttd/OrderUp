@@ -20,9 +20,34 @@
         android:hint="Capacité de la table"
         android:inputType="number"/>
 
-    <Button
-        android:id="@+id/btnUpdateTable"
+    <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modifier Table"/>
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnUpdateTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Modifier"
+            android:layout_marginRight="8dp"
+            style="@style/Widget.Material3.Button"
+            android:backgroundTint="#B67332"
+            android:backgroundTintMode="add"/>
+
+        <Button
+            android:id="@+id/btnDeleteTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Supprimer"
+            android:layout_marginLeft="8dp"
+            style="@style/Widget.Material3.Button"
+            android:backgroundTint="#B67332"
+            android:backgroundTintMode="add"/>
+
+    </LinearLayout>
 </LinearLayout>

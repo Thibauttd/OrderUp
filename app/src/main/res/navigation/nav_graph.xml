@@ -104,6 +104,12 @@
         <action
             android:id="@+id/action_Waiter_to_Tables"
             app:destination="@id/tables" />
+        <action
+            android:id="@+id/action_Waiter_to_Menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_Waiter_to_Role"
+            app:destination="@id/role" />
 
         <action
             android:id="@+id/action_Waiter_to_Floor_Plan"
@@ -120,6 +126,13 @@
         <action
             android:id="@+id/action_Tables_to_Ordertaking"
             app:destination="@id/ordertaking" />
+
+        <action
+            android:id="@+id/action_Tables_to_Menu"
+            app:destination="@id/menu" />
+        <action
+            android:id="@+id/action_Tables_to_Role"
+            app:destination="@id/role" />
     </fragment>
 
     <fragment
@@ -170,7 +183,18 @@
         android:id="@+id/drinks"
         android:name="com.example.orderup.fragments.Drinks"
         android:label="Drinks"
-        tools:layout="@layout/drink">
+        tools:layout="@layout/products">
+    </fragment>
+
+    <fragment
+        android:id="@+id/product"
+        android:name="com.example.orderup.fragments.Products"
+        android:label="Products"
+        tools:layout="@layout/products">
+
+        <action
+            android:id="@+id/action_Products_to_Menu"
+            app:destination="@id/menu" />
     </fragment>
 
     <fragment
@@ -179,5 +203,7 @@
         android:label="Toto"
         tools:layout="@layout/floor_plan">
     </fragment>
+
+
 
 </navigation>

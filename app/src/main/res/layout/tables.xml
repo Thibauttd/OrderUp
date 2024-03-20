@@ -16,17 +16,25 @@
             android:id="@+id/carte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Les tables"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.019" />
+            app:layout_constraintVertical_bias="0.120000005" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btn_logo"
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:src="@drawable/logo"
@@ -38,7 +46,7 @@
             app:layout_constraintVertical_bias="0.97" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/btn_waiter"
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:src="@drawable/waiter"

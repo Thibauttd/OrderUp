@@ -2,6 +2,7 @@ package com.example.orderup.fragments
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.ContentValues
 import android.content.Intent
@@ -10,11 +11,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -24,9 +23,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.orderup.R
 import com.example.orderup.databinding.MenuBinding
 import com.google.android.material.button.MaterialButton
-import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
+import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizer
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 
@@ -35,11 +34,9 @@ class Menu : Fragment() {
     private var _binding: MenuBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var inputImageBtn: MaterialButton
-    private lateinit var recognizedTextBtn: MaterialButton
     private lateinit var recognizedTextEt: EditText
+    private lateinit var inputImageBtn: MaterialButton
     private lateinit var progressDialog: ProgressDialog
-
     private lateinit var textRecognizer: TextRecognizer
 
     private companion object {
@@ -86,20 +83,13 @@ class Menu : Fragment() {
 
         textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
 
+        recognizedTextEt = binding.recognizedTextEt
+
         inputImageBtn = binding.inputImageBtn
-        recognizedTextBtn = binding.recognizedTextBtn
         recognizedTextEt = binding.recognizedTextEt
 
         inputImageBtn.setOnClickListener {
-            showInputImageDialog()
-        }
-
-        recognizedTextBtn.setOnClickListener {
-            if (imageUri == null) {
-                showToast("Sélectionnez d'abord une image...")
-            } else {
-                recognizeTextFromImage()
-            }
+            showImageSourceDialog()
         }
     }
 
@@ -126,28 +116,6 @@ class Menu : Fragment() {
         }
     }
 
-    private fun showInputImageDialog() {
-        val popupMenu = PopupMenu(requireContext(), inputImageBtn)
-        popupMenu.menu.add(Menu.NONE, 1, 1, "Appareil photo")
-        popupMenu.menu.add(Menu.NONE, 2, 2, "Galerie")
-        popupMenu.show()
-        popupMenu.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                1 -> {
-                    if (checkCameraPermissions()) {
-                        pickImageCamera()
-                    } else {
-                        requestCameraPermission()
-                    }
-                }
-                2 -> {
-                    pickImageGallery()
-                }
-            }
-            true
-        }
-    }
-
     private fun pickImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -162,6 +130,13 @@ class Menu : Fragment() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         cameraActivityResultLauncher.launch(intent)
+    }
+
+    private fun pickDocument() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.type = "image/*" // change the MIME type if you want to allow other file types
+        documentActivityResultLauncher.launch(intent)
     }
 
     private val galleryActivityResultLauncher =
@@ -184,6 +159,17 @@ class Menu : Fragment() {
             }
         }
 
+    private val documentActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+            if(result.resultCode == Activity.RESULT_OK){
+                val data = result.data
+                imageUri = data?.data
+                recognizeTextFromImage()
+            }else{
+                showToast("Annulé...")
+            }
+        }
+
     private fun showToast(message: String){
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
@@ -196,17 +182,45 @@ class Menu : Fragment() {
         ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
     }
 
+    private fun requestStoragePermission(){
+        ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), STORAGE_REQUEST)
+    }
+
+    private fun showImageSourceDialog() {
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Choisir une source d'image")
+            .setItems(arrayOf("Appareil photo", "Galerie", "Documents")) { _, which ->
+                when (which) {
+                    0 -> {
+                        if (checkCameraPermissions()) {
+                            pickImageCamera()
+                        } else {
+                            requestCameraPermission()
+                        }
+                    }
+                    1 -> pickImageGallery()
+                    2 -> pickDocument()
+                }
+            }
+            .setNegativeButton("Annuler") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+
+        dialog.show()
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_REQUEST_CODE) {
+        if (requestCode == STORAGE_REQUEST) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                pickImageCamera()
+                // Permission accordée, vous pouvez effectuer les opérations de stockage ici
             } else {
-                showToast("Autorisation de l'appareil photo refusée")
+                showToast("Autorisation de stockage refusée")
             }
         }
     }

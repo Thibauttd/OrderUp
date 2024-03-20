@@ -49,6 +49,10 @@ class Role : Fragment() {
             findNavController().navigate(R.id.action_Role_to_Waiter)
         }
 
+        binding.logo.setOnClickListener {
+            findNavController().navigate(R.id.action_Role_to_Waiter)
+        }
+
     }
 
     override fun onDestroyView() {

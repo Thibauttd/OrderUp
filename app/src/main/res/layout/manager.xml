@@ -14,7 +14,7 @@
         android:padding="16dp">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/btn_logo"
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:src="@drawable/logo"
@@ -26,7 +26,7 @@
             app:layout_constraintVertical_bias="0.97" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/btn_cook"
             android:layout_width="50dp"
             android:layout_height="45dp"
             android:src="@drawable/manager"
@@ -37,18 +37,26 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.97" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="101dp"
             android:layout_height="43dp"
+            android:gravity="center"
             android:text="Gérant"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guidelineV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01999998" />
+            app:layout_constraintVertical_bias="0.120000005" />
 
         <TextView
             android:id="@+id/evol"
@@ -68,7 +76,7 @@
             style="@style/Widget.Material3.Button"
             android:layout_width="211dp"
             android:layout_height="80dp"
-            android:backgroundTint="#ff7f3e"
+            android:backgroundTint="#B67332"
             android:backgroundTintMode="add"
             android:text="Historique des services"
             android:textColor="#FFFFFF"
