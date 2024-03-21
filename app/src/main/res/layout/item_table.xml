@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Table n°"
+            android:text="@string/table_number_item"
             android:textColor="#000"
             android:textSize="16sp" />
 
@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Capacité"
+            android:text="@string/capacity_item"
             android:textColor="#000"
             android:textSize="16sp" />
 

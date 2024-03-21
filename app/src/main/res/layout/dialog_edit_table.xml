@@ -10,14 +10,14 @@
         android:id="@+id/editTextNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Numéro de table"
+        android:hint="@string/table_number_edit"
         android:inputType="text"/>
 
     <EditText
         android:id="@+id/editTextCapacity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Capacité de la table"
+        android:hint="@string/table_capacity_edit"
         android:inputType="number"/>
 
     <LinearLayout
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Modifier"
+            android:text="@string/modify_table"
             android:layout_marginRight="8dp"
             style="@style/Widget.Material3.Button"
             android:backgroundTint="#B67332"
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Supprimer"
+            android:text="@string/delete_table"
             android:layout_marginLeft="8dp"
             style="@style/Widget.Material3.Button"
             android:backgroundTint="#B67332"

@@ -9,14 +9,14 @@
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nom de l'élément"
+        android:hint="@string/element_name_del"
         android:inputType="text" />
 
     <EditText
         android:id="@+id/editTextPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Prix de l'élément"
+        android:hint="@string/element_price_edit"
         android:inputType="numberDecimal" />
 
     <!-- Boutons de modification et de suppression -->
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Modifier"
+        android:text="@string/modify"
         android:layout_marginRight="8dp"
         style="@style/Widget.Material3.Button"
         android:backgroundTint="#B67332"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Supprimer"
+        android:text="@string/delete"
         android:layout_marginLeft="8dp"
         style="@style/Widget.Material3.Button"
         android:backgroundTint="#B67332"

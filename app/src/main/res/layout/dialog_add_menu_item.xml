@@ -8,13 +8,13 @@
         android:id="@+id/editTextItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nom de l'élément" />
+        android:hint="@string/element_name" />
 
     <EditText
         android:id="@+id/editTextItemPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Prix de l'élément"
+        android:hint="@string/element_price"
         android:inputType="numberDecimal" />
 
 </LinearLayout>

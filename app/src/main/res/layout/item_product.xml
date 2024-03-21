@@ -33,7 +33,7 @@
             android:layout_marginRight="8dp"
             android:backgroundTint="#ff7f3e"
             android:backgroundTintMode="add"
-            android:text="-"
+            android:text="@string/minus"
             android:textSize="16sp" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="0"
+            android:text="@string/counter_display"
             android:textSize="18sp"
             android:layout_marginRight="8dp" />
 
@@ -53,7 +53,7 @@
             android:layout_marginRight="8dp"
             android:backgroundTint="#ff7f3e"
             android:backgroundTintMode="add"
-            android:text="+" />
+            android:text="@string/plus" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
